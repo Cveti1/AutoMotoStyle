@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutoMotoStyle.Infrastructure.Migrations
 {
-    public partial class cra : Migration
+    public partial class Created : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -10,6 +10,7 @@ using static AutoMotoStyle.Infrastructure.Data.DataConstants;
 namespace AutoMotoStyle.Infrastructure.Data.Models
 {
     public class ApplicationUser : IdentityUser
+
     {
         [Required]
         [StringLength(MaxUserFirstName)]

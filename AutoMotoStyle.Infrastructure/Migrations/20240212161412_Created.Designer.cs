@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoMotoStyle.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240210141752_cra")]
-    partial class cra
+    [Migration("20240212161412_Created")]
+    partial class Created
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
