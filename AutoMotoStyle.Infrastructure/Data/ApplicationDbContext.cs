@@ -13,32 +13,21 @@ namespace AutoMotoStyle.Infrastructure.Data
             : base(options)
         {
         }
+
+        public DbSet<Car> Cars { get; set; } = null!;
+
+        public DbSet<Models.Type> Types { get; set; } = null!;
+        public DbSet<Fuel> Fuels { get; set; } = null!;
+
+        public DbSet<Dealer> Dealers { get; set; } = null!;
+
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+           
+
+            base.OnModelCreating(builder);
+        }
     }
 }
-
-/*
-
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
-{
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        builder.ApplyConfiguration(new UserConfiguration());
-        builder.ApplyConfiguration(new AgentConfiguration());
-        builder.ApplyConfiguration(new CategoryConfiguration());
-        builder.ApplyConfiguration(new HouseConfiguration());
-
-        base.OnModelCreating(builder);
-    }
-
-    public DbSet<House> Houses { get; set; } = null!;
-
-    public DbSet<Category> Categories { get; set; } = null!;
-
-    public DbSet<Agent> Agents { get; set; } = null!;
-
-} */
