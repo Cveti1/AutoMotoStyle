@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMotoStyle", "AutoMotoStyle\AutoMotoStyle.csproj", "{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMotoStyle.Core", "AutoMotoStyle.Core\AutoMotoStyle.Core.csproj", "{79BF3C33-4395-4F77-AF4F-6BC5198C19CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMotoStyle.Infrastructure", "AutoMotoStyle.Infrastructure\AutoMotoStyle.Infrastructure.csproj", "{9CB117C8-4382-46F4-B3F8-2BB5BE30B6F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMotoStyle", "AutoMotoStyle\AutoMotoStyle.csproj", "{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +15,6 @@ Global
 		{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79BF3C33-4395-4F77-AF4F-6BC5198C19CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79BF3C33-4395-4F77-AF4F-6BC5198C19CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79BF3C33-4395-4F77-AF4F-6BC5198C19CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79BF3C33-4395-4F77-AF4F-6BC5198C19CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CB117C8-4382-46F4-B3F8-2BB5BE30B6F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CB117C8-4382-46F4-B3F8-2BB5BE30B6F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CB117C8-4382-46F4-B3F8-2BB5BE30B6F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CB117C8-4382-46F4-B3F8-2BB5BE30B6F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
