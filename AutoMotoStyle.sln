@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMotoStyle", "AutoMotoSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMotoStyle.Infrastructure", "AutoMotoStyle.Infrastructure\AutoMotoStyle.Infrastructure.csproj", "{5F283BC1-43D7-4626-BCEC-63AB2415E419}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMotoStyle.Core", "AutoMotoStyle.Core\AutoMotoStyle.Core.csproj", "{2423C975-89BB-4D13-BF19-2079E82A558C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2423C975-89BB-4D13-BF19-2079E82A558C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2423C975-89BB-4D13-BF19-2079E82A558C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2423C975-89BB-4D13-BF19-2079E82A558C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2423C975-89BB-4D13-BF19-2079E82A558C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
