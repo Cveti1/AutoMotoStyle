@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMotoStyle", "AutoMotoStyle\AutoMotoStyle.csproj", "{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMotoStyle.Infrastructure", "AutoMotoStyle.Infrastructure\AutoMotoStyle.Infrastructure.csproj", "{5F283BC1-43D7-4626-BCEC-63AB2415E419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0BE07B-A8F2-49FD-B5B2-FDC7E4D54188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F283BC1-43D7-4626-BCEC-63AB2415E419}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
