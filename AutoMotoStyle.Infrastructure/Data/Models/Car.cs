@@ -51,6 +51,12 @@ namespace AutoMotoStyle.Infrastructure.Data.Models
         public Type Type { get; set; } = null!;
 
         [Required]
+        public int TransmissionId { get; set; }
+
+        [ForeignKey(nameof(TransmissionId))]
+        public Transmission Transmission { get; set; } = null!;
+
+        [Required]
         public int DealerId { get; set; }
 
         [ForeignKey(nameof(DealerId))]

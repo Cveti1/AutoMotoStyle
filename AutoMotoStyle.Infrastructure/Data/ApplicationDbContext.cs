@@ -20,6 +20,7 @@ namespace AutoMotoStyle.Infrastructure.Data
         public DbSet<Fuel> Fuels { get; set; } = null!;
 
         public DbSet<Dealer> Dealers { get; set; } = null!;
+        public DbSet<Transmission> Transmissions { get; set; } = null!;
 
 
 
