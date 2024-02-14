@@ -11,9 +11,9 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
             builder.HasData(new Dealer()
             {
                 Id = 1,
-                DealerName = "dealer1",
-                PhoneNumber = "+359123456789"
-                // UserId = "dea12856-c198-4129-b3f3-b893d8395082"
+                DealerName = "dealer",
+                PhoneNumber = "+359123456789",
+                UserId = ""
             }); ;
         }
     }

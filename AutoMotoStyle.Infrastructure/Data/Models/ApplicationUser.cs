@@ -20,6 +20,6 @@ namespace AutoMotoStyle.Infrastructure.Data.Models
         [StringLength(MaxUserLastName)]
         public string LastName { get; set; } = null!;
 
-      //  public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; } = true;
     }
 }

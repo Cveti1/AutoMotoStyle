@@ -8,10 +8,10 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Models.Type> builder)
         {
-            builder.HasData(CreateTypes());
+            builder.HasData(CreateType());
         }
 
-        private List<Models.Type> CreateTypes()
+        private List<Models.Type> CreateType()
         {
             List<Models.Type> types = new List<Models.Type>()
             {

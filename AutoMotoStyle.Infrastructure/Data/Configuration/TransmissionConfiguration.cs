@@ -18,28 +18,20 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 new Transmission()
                 {
                     Id = 1,
-                    Name = "Gasoline"
+                    Name = "Automatic"
                 },
 
                 new Transmission()
                 {
                     Id = 2,
-                    Name = "Diesel"
+                    Name = "Semi-Аutomatic"
                 },
 
                 new Transmission()
                 {
                     Id = 3,
-                    Name = "Hybrid"
-                },
-
-                 new Transmission()
-                {
-                    Id = 4,
-                    Name = "Electric"
-                },
-
-
+                    Name = "Manual"
+                }
              };
 
             return transmissions;

@@ -37,9 +37,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 {
                     Id = 4,
                     FuelName = "Electric"
-                },
-
-
+                }
              };
 
             return fuels;
