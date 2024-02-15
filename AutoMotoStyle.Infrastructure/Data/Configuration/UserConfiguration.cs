@@ -23,7 +23,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
 
             var user = new ApplicationUser()
             {
-                Id = "",
+                Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                 UserName = "dealer@mail.com",
                 NormalizedUserName = "dealer@mail.com",
                 Email = "dealer@mail.com",
@@ -37,7 +37,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
 
             user = new ApplicationUser()
             {
-                Id = "",
+                Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                 UserName = "guest@mail.com",
                 NormalizedUserName = "guest@mail.com",
                 Email = "guest@mail.com",
