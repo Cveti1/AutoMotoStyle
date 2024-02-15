@@ -23,7 +23,7 @@ namespace AutoMotoStyle.Infrastructure.Data
         public const int MaxDescription = 500;
         public const int MinDescription = 50;
 
-        public const int MaxImageUrl = 200;
+        public const int MaxImageUrl = 2000;
 
 
         // User

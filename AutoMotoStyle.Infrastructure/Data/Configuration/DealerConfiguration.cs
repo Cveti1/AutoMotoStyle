@@ -14,7 +14,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 DealerName = "dealer",
                 PhoneNumber = "+359123456789",
                 UserId = "dealer-7-4421-47c0-a9ba-38b9a5ddb357"
-            }); ;
+            }); 
         }
     }
 }

@@ -40,7 +40,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Models
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        // [Column(TypeName = "money")]
+         [Column(TypeName = "money")]
         [Precision(18, 2)]
         public decimal Price { get; set; }
 
@@ -62,11 +62,11 @@ namespace AutoMotoStyle.Infrastructure.Data.Models
         [ForeignKey(nameof(DealerId))]
         public Dealer Dealer { get; set; } = null!;
 
-        public string? RenterId { get; set; }
+        public string? RenterId { get; set; } = null!;
 
          [ForeignKey(nameof(RenterId))]
          public IdentityUser? Renter { get; set; }
 
-        public bool IsActive { get; set; } = true;
+        //public bool IsActive { get; set; } = true;
     }
 }

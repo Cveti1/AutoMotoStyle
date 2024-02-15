@@ -5,23 +5,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoMotoStyle.Infrastructure.Data.Configuration
 {
-   public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+   public class UserConfiguration : IEntityTypeConfiguration<IdentityUser>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        public void Configure(EntityTypeBuilder<IdentityUser> builder)
         {
-            builder
-                .Property(p => p.IsActive)
-                .HasDefaultValue(true);
-
             builder.HasData(CreateUsers());
         }
 
-        private List<ApplicationUser> CreateUsers()
+        private List<IdentityUser> CreateUsers()
         {
-            var users = new List<ApplicationUser>();
-            var hasher = new PasswordHasher<ApplicationUser>();
+            var users = new List<IdentityUser>();
+            var hasher = new PasswordHasher<IdentityUser>();
 
-            var user = new ApplicationUser()
+            var user = new IdentityUser()
             {
                 Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                 UserName = "dealer@mail.com",
@@ -35,7 +31,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
 
             users.Add(user);
 
-            user = new ApplicationUser()
+            user = new IdentityUser()
             {
                 Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                 UserName = "guest@mail.com",
