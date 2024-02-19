@@ -20,12 +20,16 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false;
     options.SignIn.RequireConfirmedEmail = false;
     options.Password.RequireNonAlphanumeric =false;
+    options.Password.RequireDigit =false;
+    options.Password.RequireLowercase =false;
+    options.Password.RequireUppercase =false;
     options.Password.RequiredLength = 4;
     
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddServices();
 
 var app = builder.Build();
 
