@@ -19,8 +19,4 @@
     <ProjectReference Include="..\AutoMotoStyle.Core\AutoMotoStyle.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Dealer\" />
-  </ItemGroup>
-
 </Project>

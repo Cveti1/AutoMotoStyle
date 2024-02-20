@@ -36,8 +36,10 @@ namespace AutoMotoStyle.Infrastructure.Data
 
         // Dealer
         public const int MaxDealerName = 20;
+        public const int MinDealerName = 3;
 
         public const int MaxPhone = 15;
+        public const int MinPhone = 8;
 
 
         //Fuel
