@@ -10,21 +10,36 @@ namespace AutoMotoStyle.Controllers
     public class CarController : Controller
     {
 
+        private readonly ICarService carService;
+
+        private readonly IDealerService dealerService;
+
+        private readonly ILogger logger;
+
+        public CarController(ICarService _carService,IDealerService _dealerService,ILogger<CarController> _logger)
+        {
+            carService = _carService;
+            dealerService = _dealerService;
+            logger = _logger;
+        }
+
+
+
+
         [HttpGet]
         [AllowAnonymous]
         public async  Task<IActionResult> All()
         {
-            var model = new CarsModel();
-
-
-
+            
+            
+            var model = new CarModel();
             return View(model);
         }
 
 
         public async Task<IActionResult> Mine()
         {
-            var model = new CarsModel();
+            var model = new CarModel();
 
 
 

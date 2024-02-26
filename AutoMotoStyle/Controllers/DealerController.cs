@@ -3,6 +3,7 @@ using AutoMotoStyle.Core.Models.Dealer;
 using AutoMotoStyle.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AutoMotoStyle.Controllers
 {
@@ -24,8 +25,8 @@ namespace AutoMotoStyle.Controllers
 
             if (await dealerService.ExistsById(User.Id()))
             {
-                // return BadRequest();
-                return RedirectToAction("All", "Car");
+                ModelState.AddModelError("Error", "You are already dealer!");
+
             }
 
             var model = new BecomeDealer();
@@ -47,7 +48,8 @@ namespace AutoMotoStyle.Controllers
             }
             if (await dealerService.ExistsById(userId))
             {
-                 return BadRequest();
+               
+                ModelState.AddModelError("Error", "This dealer already exist!");
               
             }
 

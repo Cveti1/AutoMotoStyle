@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoMotoStyle.Core.Models.Car
 {
-    public class CarsModel
+    public class CarModel
     {
     }
 }
