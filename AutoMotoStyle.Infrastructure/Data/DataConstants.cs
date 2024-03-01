@@ -9,16 +9,20 @@ namespace AutoMotoStyle.Infrastructure.Data
 {
     public class DataConstants
     {
-        //Category
+        //Type
         public const int MaxType = 35;
         public const int MinType = 4;
 
+        //Fuel
+        public const int MaxFuel = 15;
+        public const int MinFuel = 3;
+
         // Car
         public const int MaxBrand = 50;
-        public const int MinBrand= 5;
+        public const int MinBrand= 4;
 
         public const int MaxModel = 50;
-        public const int MinModel = 5;
+        public const int MinModel = 4;
 
         public const int MaxDescription = 500;
         public const int MinDescription = 50;
@@ -42,8 +46,6 @@ namespace AutoMotoStyle.Infrastructure.Data
         public const int MinPhone = 8;
 
 
-        //Fuel
-        public const int MaxFuel = 15;
-        public const int MinFuel = 3;
+       
     }
 }

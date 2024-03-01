@@ -10,13 +10,12 @@ namespace AutoMotoStyle.Core.Contracts
     {
         Task<bool> ExistsById(string userId);
 
-      //  Task<bool> UserWithPhoneNumberExists(string phoneNumber);
-
+      
         Task<bool> UserHasRents(string userId);
 
         Task Create(string userId, string dealerName, string phoneNumber);
 
-        Task<int> GetAgentId(string userId);
+        Task<int> GetDealerId(string userId);
 
     }
 }

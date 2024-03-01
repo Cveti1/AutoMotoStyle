@@ -39,9 +39,10 @@ namespace AutoMotoStyle.Core.Services
                .AnyAsync(d => d.UserId == userId);
         }
 
-        public Task<int> GetAgentId(string userId)
+        public async Task<int> GetDealerId(string userId)
         {
-            throw new NotImplementedException();
+            return (await repo.AllReadonly<Dealer>()
+               .FirstOrDefaultAsync(d => d.UserId == userId))?.Id ?? 0;
         }
 
         public async Task<bool> UserHasRents(string userId)

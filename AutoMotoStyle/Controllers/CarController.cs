@@ -1,5 +1,6 @@
 ﻿using AutoMotoStyle.Core.Contracts;
 using AutoMotoStyle.Core.Models.Car;
+using AutoMotoStyle.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,14 +14,16 @@ namespace AutoMotoStyle.Controllers
         private readonly ICarService carService;
 
         private readonly IDealerService dealerService;
+       
+      //  private readonly ILogger logger;
 
-        private readonly ILogger logger;
-
-        public CarController(ICarService _carService,IDealerService _dealerService,ILogger<CarController> _logger)
+        public CarController(
+            ICarService _carService,
+            IDealerService _dealerService)
         {
             carService = _carService;
             dealerService = _dealerService;
-            logger = _logger;
+          
         }
 
 
@@ -30,8 +33,7 @@ namespace AutoMotoStyle.Controllers
         [AllowAnonymous]
         public async  Task<IActionResult> All()
         {
-            
-            
+                        
             var model = new CarModel();
             return View(model);
         }
@@ -63,20 +65,46 @@ namespace AutoMotoStyle.Controllers
         [HttpGet]      
         public async Task<IActionResult> Add()
         {
+            if ((await dealerService.ExistsById(User.Id()))==false)
+            {
+                return RedirectToAction(nameof(DealerController.Become), "Dealer");
+            }
 
-
-            var model = new CarFormModel();
+            var model = new CarModel()
+            {
+                CarTypes = await carService.AllTypes(),
+                CarFuels = await carService.AllFuels(),
+                CarTransmissions = await carService.AllTransmissions()
+            };
          
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CarFormModel model)
+        public async Task<IActionResult> Add(CarModel car)
         {
-            int id = 1;
+            if ((await dealerService.ExistsById(User.Id())) == false)
+            {
+                return RedirectToAction(nameof(DealerController.Become), "Dealer");
+            }
+                     
 
-            return RedirectToAction(nameof(Details), new {  id });
+            if (!ModelState.IsValid)
+            {
+                car.CarTypes = await carService.AllTypes();
+                car.CarFuels = await carService.AllFuels();
+                car.CarTransmissions = await carService.AllTransmissions();
+
+                return View(car);
+              
+            }
+
+            int dealerId = await dealerService.GetDealerId(User.Id());
+
+            int id = await carService.Create(car, dealerId);
+
+            return RedirectToAction(nameof(Details), new { id });
         }
 
 
