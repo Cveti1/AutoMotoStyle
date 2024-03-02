@@ -67,6 +67,6 @@ namespace AutoMotoStyle.Infrastructure.Data.Models
          [ForeignKey(nameof(RenterId))]
          public IdentityUser? Renter { get; set; }
 
-        //public bool IsActive { get; set; } = true;
+         public bool IsActive { get; set; } = true;
     }
 }

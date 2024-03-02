@@ -22,10 +22,91 @@ namespace AutoMotoStyle.Core.Services
             repo = _repo;
         }
 
+        public async Task<CarsQueryModel> All(
+            string? type = null, 
+            string? searchTerm = null, 
+            Sorting sorting = Sorting.Newest, 
+            int currentPage = 1, 
+            int carsPerPage = 1)
+        {
+            var result = new CarsQueryModel();
+
+            var cars = repo.AllReadonly<Car>()
+                .Where(h => h.IsActive);
+
+            if (string.IsNullOrEmpty(type) == false)
+            {
+                cars = cars
+                    .Where(h => h.Type.TypeName == type);
+            }
+
+            if (string.IsNullOrEmpty(searchTerm) == false)
+            {
+                searchTerm = $"%{searchTerm.ToLower()}%";
+
+                cars = cars
+                    .Where(h => EF.Functions.Like(h.Brand.ToLower(), searchTerm) ||
+                        EF.Functions.Like(h.Model.ToLower(), searchTerm) ||
+                        EF.Functions.Like(h.Description.ToLower(), searchTerm));
+            }
+
+            //switch (sorting)
+            //{
+            //    case HouseSorting.Price:
+            //        houses = houses
+            //        .OrderBy(h => h.PricePerMonth);
+            //        break;
+            //    case HouseSorting.NotRentedFirst:
+            //        houses = houses
+            //        .OrderBy(h => h.RenterId);
+            //        break;
+            //    default:
+            //        houses = houses.OrderByDescending(h => h.Id);
+            //        break;
+            //}
+
+            cars = sorting switch
+            {
+               Sorting.Price => cars
+                    .OrderBy(h => h.Price),
+                Sorting.NotRentedFirst => cars
+                    .OrderBy(h => h.RenterId),
+                _ => cars.OrderByDescending(h => h.Id)
+            };
+
+            result.Cars = await cars
+                .Skip((currentPage - 1) * carsPerPage)
+                .Take(carsPerPage)
+                .Select(h => new CarServiceModel()
+                {
+                    Brand = h.Brand,
+                    Model = h.Model,
+                    Id = h.Id,
+                    ImageUrl = h.ImageUrl,
+                    IsRented = h.RenterId != null,
+                    Price = h.Price,
+                    Description = h.Description,
+                    Year = h.Year
+                })
+                .ToListAsync();
+
+            result.TotalCarCount = await cars.CountAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<string>> AllTypesNames()
+        {
+            return await repo.AllReadonly<Type>()
+                .Select(c => c.TypeName)
+                .Distinct()
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<CarFuelModel>> AllFuels()
         {
             return await repo.AllReadonly<Fuel>()
-                    .OrderBy(h => h.Id)
+                    .OrderBy(h => h.FuelName)
                     .Select(h => new CarFuelModel()
                     {
                         Id = h.Id,
@@ -37,7 +118,7 @@ namespace AutoMotoStyle.Core.Services
         public async Task<IEnumerable<CarTransmissionModel>> AllTransmissions()
         {
             return await repo.AllReadonly<Transmission>()
-                    .OrderBy(h => h.Id)
+                    .OrderBy(h => h.Name)
                     .Select(h => new CarTransmissionModel()
                     {
                         Id = h.Id,
@@ -49,7 +130,7 @@ namespace AutoMotoStyle.Core.Services
         public async Task<IEnumerable<CarTypeModel>> AllTypes()
         {
             return await repo.AllReadonly<Type>()
-                    .OrderBy(h => h.Id)
+                    .OrderBy(h => h.TypeName)
                     .Select(h => new CarTypeModel()
                     {
                         Id = h.Id,

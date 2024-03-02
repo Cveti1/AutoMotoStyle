@@ -1,9 +1,11 @@
 ﻿using AutoMotoStyle.Core.Contracts;
 using AutoMotoStyle.Core.Models.Car;
 using AutoMotoStyle.Extensions;
+using AutoMotoStyle.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AutoMotoStyle.Controllers
 {
@@ -12,7 +14,6 @@ namespace AutoMotoStyle.Controllers
     {
 
         private readonly ICarService carService;
-
         private readonly IDealerService dealerService;
        
       //  private readonly ILogger logger;
@@ -27,15 +28,28 @@ namespace AutoMotoStyle.Controllers
         }
 
 
-
-
         [HttpGet]
         [AllowAnonymous]
-        public async  Task<IActionResult> All()
+        public async  Task<IActionResult> All([FromQuery]AllCarsQueryModel query)
         {
                         
-            var model = new CarModel();
-            return View(model);
+           // var model = new CarModel();
+           // return View(model);
+
+
+
+            var result = await carService.All(
+            query.Type,
+            query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+            AllCarsQueryModel.CarsPerPage);
+
+            query.TotalCarCount = result.TotalCarCount;
+            query.Types = await carService.AllTypesNames();
+            query.Cars = result.Cars;
+
+            return View(query);
         }
 
 
@@ -113,14 +127,14 @@ namespace AutoMotoStyle.Controllers
         public async Task<IActionResult> Edit(int id)
         {
 
-            var model = new CarFormModel();
+            var model = new CarsQueryModel();
                return View(model);
             
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, CarFormModel model)
+        public async Task<IActionResult> Edit(int id, CarsQueryModel model)
         {
         
 
