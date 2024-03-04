@@ -214,13 +214,48 @@ namespace AutoMotoStyle.Controllers
             return RedirectToAction(nameof(Details), new {mod.Id});
         }
 
-
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
 
+            if ((await carService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
 
-            return RedirectToAction(nameof(All), new { id });
+            if ((await carService.HasDealerWithId(id, User.Id())) == false)
+            {
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            var car = await carService.CarDetailsById(id);
+            var model = new CarDetailsViewModel()
+            {
+                Brand = car.Brand,
+                Model = car.Model,
+                ImageUrl = car.ImageUrl
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, CarDetailsViewModel model)
+        {
+            if ((await carService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if ((await carService.HasDealerWithId(id, User.Id())) == false)
+            {
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            await carService.Delete(id);
+
+            return RedirectToAction(nameof(All));
         }
 
         [HttpPost]

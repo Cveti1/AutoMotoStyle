@@ -12,10 +12,7 @@ namespace AutoMotoStyle.Core.Contracts
         Task<IEnumerable<CarHomePageModel>> HomePageCars();
         Task<IEnumerable<CarTypeModel>> AllTypes();
         Task<IEnumerable<CarFuelModel>> AllFuels();
-        Task<IEnumerable<CarTransmissionModel>> AllTransmissions();
-      //  Task<bool> TypeExist(int typeId);
-       // Task<bool> TransmissionExist(int transmissionId);
-      //  Task<bool> FuelExist(int fuelId);
+        Task<IEnumerable<CarTransmissionModel>> AllTransmissions();      
         Task<int> Create(CarModel model, int dealerId);
         
         Task<CarsQueryModel> All(
@@ -42,15 +39,15 @@ namespace AutoMotoStyle.Core.Contracts
         Task<int> GetCarFuelId(int carId);
         Task<int> GetCarTransmissionId(int carId);
 
-       // Task Delete(int houseId);
+        Task Delete(int carId);
 
-       // Task<bool> IsRented(int houseId);
+        Task<bool> IsRented(int carId);
 
-       // Task<bool> IsRentedByUserWithId(int houseId, string currentUserId);
+        Task<bool> IsRentedByUserWithId(int carId, string currentUserId);
 
-       // Task Rent(int houseId, string currentUserId);
+        Task Rent(int carId, string currentUserId);
 
-       // Task Leave(int houseId);
+        Task Leave(int carId);
 
     }
 }

@@ -146,13 +146,7 @@ namespace AutoMotoStyle.Core.Services
             await repo.SaveChangesAsync();
 
             return car.Id;
-        }
-
-       // public async Task<bool> FuelExist(int fuelId)
-       // {
-          //  return await repo.AllReadonly<Fuel>()
-        //        .AnyAsync(t => t.Id == fuelId);
-        //}
+        }     
 
         public async Task<IEnumerable<CarHomePageModel>> HomePageCars()
         {
@@ -171,18 +165,6 @@ namespace AutoMotoStyle.Core.Services
                     .ToListAsync();
             
         }
-
-     //   public async Task<bool> TransmissionExist(int transmissionId)
-      //  {
-       //     return await repo.AllReadonly<Transmission>()
-       //        .AnyAsync(t => t.Id == transmissionId);
-       // }
-
-     //   public async Task<bool> TypeExist(int typeId)
-      //  {
-       //     return await repo.AllReadonly<Type>()
-        //       .AnyAsync(t => t.Id == typeId);
-       // }
 
         public async Task<IEnumerable<CarServiceModel>> AllCarsByDealerId(int id)
         {
@@ -303,6 +285,55 @@ namespace AutoMotoStyle.Core.Services
         public async Task<int> GetCarTransmissionId(int carId)
         {
             return (await repo.GetByIdAsync<Car>(carId)).TransmissionId;
+        }
+
+        public async Task Delete(int carId)
+        {
+            var car = await repo.GetByIdAsync<Car>(carId);
+            car.IsActive = false;
+
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsRented(int carId)
+        {
+            return (await repo.GetByIdAsync<Car>(carId)).RenterId != null;
+        }
+
+        public async Task<bool> IsRentedByUserWithId(int carId, string currentUserId)
+        {
+            bool result = false;
+            var car = await repo.AllReadonly<Car>()
+                .Where(h => h.IsActive)
+                .Where(h => h.Id == carId)
+                .FirstOrDefaultAsync();
+
+            if (car != null && car.RenterId == currentUserId)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        public async Task Rent(int carId, string currentUserId)
+        {
+            var car = await repo.GetByIdAsync<Car>(carId);
+
+            if (car != null && car.RenterId != null)
+            {
+                throw new ArgumentException("Car is already rented");
+            }
+
+           // guard.AgainstNull(house, "House can not be found");
+            car.RenterId = currentUserId;
+
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task Leave(int carId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
