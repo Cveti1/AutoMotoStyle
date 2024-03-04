@@ -5,6 +5,7 @@ using AutoMotoStyle.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AutoMotoStyle.Controllers
@@ -32,12 +33,6 @@ namespace AutoMotoStyle.Controllers
         [AllowAnonymous]
         public async  Task<IActionResult> All([FromQuery]AllCarsQueryModel query)
         {
-                        
-           // var model = new CarModel();
-           // return View(model);
-
-
-
             var result = await carService.All(
             query.Type,
             query.SearchTerm,
@@ -55,23 +50,38 @@ namespace AutoMotoStyle.Controllers
 
         public async Task<IActionResult> Mine()
         {
-            var model = new CarModel();
+         //   if (User.IsInRole(AdminRolleName))
+          //  {
+           //     return RedirectToAction("Mine", "House", new { area = AreaName });
+           // }
 
+            IEnumerable<CarServiceModel> myCars;
+            var userId = User.Id();
 
+            if (await dealerService.ExistsById(userId))
+            {
+                int dealerId = await dealerService.GetDealerId(userId);
+                myCars = await carService.AllCarsByDealerId(dealerId);
+            }
+            else
+            {
+                myCars = await carService.AllCarsByUsarId(userId);
+            }
 
-            return View(model);
+            return View(myCars);
         }
 
 
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
+            if ((await carService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(Mine));
+            }
 
+            var model = await carService.CarDetailsById(id);
 
-            var model = new CarDetailsModel();
-
-
-           
             return View(model);
         }
 
@@ -127,18 +137,81 @@ namespace AutoMotoStyle.Controllers
         public async Task<IActionResult> Edit(int id)
         {
 
-            var model = new CarsQueryModel();
-               return View(model);
-            
+            if ((await carService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if ((await carService.HasDealerWithId(id, User.Id())) == false)
+            {
+              //  logger.LogInformation("User with id {0} attempted to open other agent house", User.Id());
+
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            var car = await carService.CarDetailsById(id);
+            var typeId = await carService.GetCarTypeId(id);
+            var fuelId = await carService.GetCarFuelId(id);
+            var transmissionId = await carService.GetCarTransmissionId(id);
+
+            var model = new CarModel()
+            {
+                Id = id,
+                Brand = car.Brand,
+                Model = car.Model,
+                Year = car.Year,             
+                Description = car.Description,
+                ImageUrl = car.ImageUrl,
+                Price = car.Price,
+                TypeId = typeId,              
+                FuelId = fuelId,
+                TransmissionId = transmissionId,              
+                CarTypes = await carService.AllTypes(),
+                CarFuels = await carService.AllFuels(),
+                CarTransmissions = await carService.AllTransmissions()           
+        };
+
+            return View(model);
+
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, CarsQueryModel model)
+        public async Task<IActionResult> Edit(int id, CarModel mod)
         {
-        
+          //  if (id != mod.Id)
+          //  {
+          //      return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+         //   }
 
-            return RedirectToAction(nameof(Details), new { id});
+            if ((await carService.Exists(mod.Id)) == false)
+            {
+                ModelState.AddModelError("", "Car does not exist!");
+                mod.CarTypes = await carService.AllTypes();
+                mod.CarFuels = await carService.AllFuels();
+                mod.CarTransmissions = await carService.AllTransmissions();
+
+                return View(mod);
+            }
+
+            if ((await carService.HasDealerWithId(mod.Id, User.Id())) == false)
+            {
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+                       
+
+            if (ModelState.IsValid == false)
+            {
+                mod.CarTypes = await carService.AllTypes();
+                mod.CarFuels = await carService.AllFuels();
+                mod.CarTransmissions = await carService.AllTransmissions();
+
+                return View(mod);
+            }
+
+            await carService.Edit(mod.Id, mod);
+
+            return RedirectToAction(nameof(Details), new {mod.Id});
         }
 
 

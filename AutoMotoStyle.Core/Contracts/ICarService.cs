@@ -13,9 +13,9 @@ namespace AutoMotoStyle.Core.Contracts
         Task<IEnumerable<CarTypeModel>> AllTypes();
         Task<IEnumerable<CarFuelModel>> AllFuels();
         Task<IEnumerable<CarTransmissionModel>> AllTransmissions();
-        Task<bool> TypeExist(int typeId);
-        Task<bool> TransmissionExist(int transmissionId);
-        Task<bool> FuelExist(int fuelId);
+      //  Task<bool> TypeExist(int typeId);
+       // Task<bool> TransmissionExist(int transmissionId);
+      //  Task<bool> FuelExist(int fuelId);
         Task<int> Create(CarModel model, int dealerId);
         
         Task<CarsQueryModel> All(
@@ -27,19 +27,20 @@ namespace AutoMotoStyle.Core.Contracts
 
         Task<IEnumerable<string>> AllTypesNames();
 
-      //  Task<IEnumerable<HouseServiceModel>> AllHousesByAgentId(int id);
+        Task<IEnumerable<CarServiceModel>> AllCarsByDealerId(int id);
+        Task<IEnumerable<CarServiceModel>> AllCarsByUsarId(string userId);
 
-       // Task<IEnumerable<HouseServiceModel>> AllHousesByUserId(string userId);
+        Task<CarDetailsModel> CarDetailsById(int id);
 
-        //Task<HouseDetailsModel> HouseDetailsById(int id);
+        Task<bool> Exists(int id);
 
-       // Task<bool> Exists(int id);
+        Task Edit(int carId, CarModel model);
 
-       // Task Edit(int houseId, HouseModel model);
+        Task<bool> HasDealerWithId(int carId, string currentUserId);
 
-      //  Task<bool> HasAgentWithId(int houseId, string currentUserId);
-
-       // Task<int> GetHouseCategoryId(int houseId);
+        Task<int> GetCarTypeId(int carId);
+        Task<int> GetCarFuelId(int carId);
+        Task<int> GetCarTransmissionId(int carId);
 
        // Task Delete(int houseId);
 

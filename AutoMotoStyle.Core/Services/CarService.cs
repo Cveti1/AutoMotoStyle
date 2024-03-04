@@ -1,5 +1,6 @@
 ﻿using AutoMotoStyle.Core.Contracts;
 using AutoMotoStyle.Core.Models.Car;
+using AutoMotoStyle.Core.Models.Dealer;
 using AutoMotoStyle.Infrastructure.Data.Common;
 using AutoMotoStyle.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -50,21 +51,7 @@ namespace AutoMotoStyle.Core.Services
                         EF.Functions.Like(h.Description.ToLower(), searchTerm));
             }
 
-            //switch (sorting)
-            //{
-            //    case HouseSorting.Price:
-            //        houses = houses
-            //        .OrderBy(h => h.PricePerMonth);
-            //        break;
-            //    case HouseSorting.NotRentedFirst:
-            //        houses = houses
-            //        .OrderBy(h => h.RenterId);
-            //        break;
-            //    default:
-            //        houses = houses.OrderByDescending(h => h.Id);
-            //        break;
-            //}
-
+            
             cars = sorting switch
             {
                Sorting.Price => cars
@@ -161,11 +148,11 @@ namespace AutoMotoStyle.Core.Services
             return car.Id;
         }
 
-        public async Task<bool> FuelExist(int fuelId)
-        {
-            return await repo.AllReadonly<Fuel>()
-                .AnyAsync(t => t.Id == fuelId);
-        }
+       // public async Task<bool> FuelExist(int fuelId)
+       // {
+          //  return await repo.AllReadonly<Fuel>()
+        //        .AnyAsync(t => t.Id == fuelId);
+        //}
 
         public async Task<IEnumerable<CarHomePageModel>> HomePageCars()
         {
@@ -185,16 +172,137 @@ namespace AutoMotoStyle.Core.Services
             
         }
 
-        public async Task<bool> TransmissionExist(int transmissionId)
+     //   public async Task<bool> TransmissionExist(int transmissionId)
+      //  {
+       //     return await repo.AllReadonly<Transmission>()
+       //        .AnyAsync(t => t.Id == transmissionId);
+       // }
+
+     //   public async Task<bool> TypeExist(int typeId)
+      //  {
+       //     return await repo.AllReadonly<Type>()
+        //       .AnyAsync(t => t.Id == typeId);
+       // }
+
+        public async Task<IEnumerable<CarServiceModel>> AllCarsByDealerId(int id)
         {
-            return await repo.AllReadonly<Transmission>()
-               .AnyAsync(t => t.Id == transmissionId);
+            return await repo.AllReadonly<Car>()
+                .Where(c => c.IsActive)
+                .Where(c => c.DealerId == id)
+                .Select(c => new CarServiceModel()
+                {
+                    Id = c.Id,
+                    Brand = c.Brand,
+                    Model = c.Model,
+                    Description = c.Description,
+                    Price = c.Price,
+                    Year = c.Year,
+                    ImageUrl = c.ImageUrl,
+                    IsRented = c.RenterId != null                    
+                })
+                .ToListAsync();
         }
 
-        public async Task<bool> TypeExist(int typeId)
+        public async Task<IEnumerable<CarServiceModel>> AllCarsByUsarId(string userId)
         {
-            return await repo.AllReadonly<Type>()
-               .AnyAsync(t => t.Id == typeId);
+            return await repo.AllReadonly<Car>()
+               .Where(c => c.RenterId == userId)
+               .Where(c => c.IsActive)
+               .Select(c => new CarServiceModel()
+               {
+                   Id = c.Id,
+                   Brand = c.Brand,
+                   Model = c.Model,
+                   Description = c.Description,
+                   Price = c.Price,
+                   Year = c.Year,
+                   ImageUrl = c.ImageUrl,
+                   IsRented = c.RenterId != null
+               })
+               .ToListAsync();
+        }
+
+        public async Task<CarDetailsModel> CarDetailsById(int id)
+        {
+            return await repo.AllReadonly<Car>()
+                .Where(h => h.IsActive)
+                .Where(h => h.Id == id)
+                .Select(h => new CarDetailsModel()
+                {
+                    Id = id,
+                    Brand = h.Brand,
+                    Model = h.Model,                 
+                    Year = h.Year,
+                    Description = h.Description,
+                    Type = h.Type.TypeName,
+                    Fuel = h.Fuel.FuelName,
+                    Transmission = h.Transmission.Name,
+                    ImageUrl = h.ImageUrl,
+                    IsRented = h.RenterId != null,
+                    Price = h.Price,                    
+                    Dealer = new DealerServiceModel()
+                    {
+                        Name = h.Dealer.User.UserName,
+                        PhoneNumber = h.Dealer.PhoneNumber
+                    }
+
+                })
+                .FirstAsync();
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await repo.AllReadonly<Car>()
+                .AnyAsync(h => h.Id == id && h.IsActive);
+        }
+
+        public async Task Edit(int carId, CarModel model)
+        {
+            var car = await repo.GetByIdAsync<Car>(carId);
+
+            car.Brand = model.Brand;
+            car.Model = model.Model;
+            car.Year = model.Year;
+            car.Description = model.Description;            
+            car.ImageUrl = model.ImageUrl;            
+            car.Price = model.Price;
+            car.TypeId = model.TypeId;
+            car.FuelId = model.FuelId;
+            car.TransmissionId = model.TransmissionId;          
+          
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task<bool> HasDealerWithId(int carId, string currentUserId)
+        {
+            bool result = false;
+            var car = await repo.AllReadonly<Car>()
+                .Where(h => h.IsActive)
+                .Where(h => h.Id == carId)
+                .Include(h => h.Dealer)
+                .FirstOrDefaultAsync();
+
+            if (car?.Dealer != null && car.Dealer.UserId == currentUserId)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        public async Task<int> GetCarTypeId(int carId)
+        {
+            return (await repo.GetByIdAsync<Car>(carId)).TypeId;
+        }
+
+        public async Task<int> GetCarFuelId(int carId)
+        {
+            return (await repo.GetByIdAsync<Car>(carId)).FuelId;
+        }
+
+        public async Task<int> GetCarTransmissionId(int carId)
+        {
+            return (await repo.GetByIdAsync<Car>(carId)).TransmissionId;
         }
     }
 }
