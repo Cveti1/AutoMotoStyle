@@ -323,9 +323,8 @@ namespace AutoMotoStyle.Core.Services
             if (car != null && car.RenterId != null)
             {
                 throw new ArgumentException("Car is already rented");
-            }
+           }
 
-           // guard.AgainstNull(house, "House can not be found");
             car.RenterId = currentUserId;
 
             await repo.SaveChangesAsync();
@@ -333,7 +332,10 @@ namespace AutoMotoStyle.Core.Services
 
         public async Task Leave(int carId)
         {
-            throw new NotImplementedException();
+            var car = await repo.GetByIdAsync<Car>(carId);
+            car.RenterId = null;
+
+            await repo.SaveChangesAsync();
         }
     }
 }

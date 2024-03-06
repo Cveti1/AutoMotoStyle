@@ -261,9 +261,26 @@ namespace AutoMotoStyle.Controllers
         [HttpPost]
         public async Task<IActionResult> Rent(int id)
         {
+            if ((await carService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if ( await dealerService.ExistsById(User.Id()))
+            {
+               return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            if (await carService.IsRented(id))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            await carService.Rent(id, User.Id());
+
+            return RedirectToAction(nameof(Mine));
 
 
-            return RedirectToAction(nameof(Mine), new { id });
         }
 
         [HttpPost]
@@ -271,7 +288,20 @@ namespace AutoMotoStyle.Controllers
         {
 
 
-            return RedirectToAction(nameof(Mine), new { id });
+            if ((await carService.Exists(id)) == false ||
+                (await carService.IsRented(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if ((await carService.IsRentedByUserWithId(id, User.Id())) == false)
+            {
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            await carService.Leave(id);
+
+            return RedirectToAction(nameof(Mine));
         }
     }
 }
