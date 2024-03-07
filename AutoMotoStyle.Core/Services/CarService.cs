@@ -4,6 +4,7 @@ using AutoMotoStyle.Core.Models.Dealer;
 using AutoMotoStyle.Infrastructure.Data.Common;
 using AutoMotoStyle.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace AutoMotoStyle.Core.Services
     {
 
         private readonly IRepository repo;
+        private readonly ILogger logger;
 
-        public CarService(IRepository _repo)
+        public CarService(IRepository _repo, ILogger<CarService> _logger)
         {
             repo = _repo;
+            logger = _logger;
         }
 
         public async Task<CarsQueryModel> All(
@@ -142,8 +145,20 @@ namespace AutoMotoStyle.Core.Services
                 DealerId=dealerId
             };
 
-            await repo.AddAsync(car);
-            await repo.SaveChangesAsync();
+
+
+
+            try
+            {
+                await repo.AddAsync(car);
+                await repo.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(nameof(Create), ex);
+                throw new ApplicationException("Unable to save the data!", ex);
+            }
+        
 
             return car.Id;
         }     
