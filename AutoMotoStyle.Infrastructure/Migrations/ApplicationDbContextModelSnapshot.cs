@@ -411,15 +411,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9275b023-e413-49a0-b381-3a0263ac8414",
+                            ConcurrencyStamp = "335c64ee-116f-43b1-92db-e9e9525dcf60",
                             Email = "dealer@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "dealer@mail.com",
                             NormalizedUserName = "dealer@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJmjc3VG6pUVdiAC4UQIY/zWP0uV6zItOTC0fhM9bOrcardjdfTY2V3uSf7N6iH6bg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGExmiUHEYukBvMYkilOx9IF8qp02ziz5eUcDhLtEJxFgcNa9XxBu3tEbGY660T0Ow==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4485dbfc-78a5-412d-8965-60aefd03e490",
+                            SecurityStamp = "ce925f7e-545d-4b50-8787-f05a78b81e7b",
                             TwoFactorEnabled = false,
                             UserName = "dealer@mail.com"
                         },
@@ -427,15 +427,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "35c972d5-4884-46a3-82f4-2a423fab8b97",
+                            ConcurrencyStamp = "671a7c8c-0681-4673-8068-9f7035247c15",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAKiard2Q1IKiyNDX9iqx3k9ZzBVJA5d98TanShN2i+stAyMd63rwzU0Q+0713+lig==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPSIhC2oWoYkfDQmrYBzsb+d6OSYrLEsgfcKw9CjPPkcDIhcd+lrN9Mb/fkrS7d0Tw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1edb6dd3-5b6e-4c3b-8f3c-b19ffa5974ff",
+                            SecurityStamp = "2e739940-b833-4395-ba8f-f711ef186baa",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         });

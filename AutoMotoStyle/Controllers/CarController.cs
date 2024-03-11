@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using AutoMotoStyle.Core.Extensions;
 
 namespace AutoMotoStyle.Controllers
 {
@@ -73,7 +74,7 @@ namespace AutoMotoStyle.Controllers
 
 
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string information)
         {
             if ((await carService.Exists(id)) == false)
             {
@@ -81,6 +82,13 @@ namespace AutoMotoStyle.Controllers
             }
 
             var model = await carService.CarDetailsById(id);
+
+            if (information != model.GetInformation())
+            {
+                TempData["ErrorMessage"] = "Error!";
+
+                return RedirectToAction("Index", "Home");
+            }
 
             return View(model);
         }
@@ -128,7 +136,7 @@ namespace AutoMotoStyle.Controllers
 
             int id = await carService.Create(car, dealerId);
 
-            return RedirectToAction(nameof(Details), new { id });
+            return RedirectToAction(nameof(Details), new { id=id, information=car.GetInformation() });
         }
 
 
@@ -211,7 +219,8 @@ namespace AutoMotoStyle.Controllers
 
             await carService.Edit(mod.Id, mod);
 
-            return RedirectToAction(nameof(Details), new {mod.Id});
+            return RedirectToAction(nameof(Details), new {id=mod.Id, information = mod.GetInformation()
+            });
         }
 
         [HttpGet]

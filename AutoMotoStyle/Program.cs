@@ -27,7 +27,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequiredLength = 4;
     
 })
-    // .AddRoles<IdentityRole>()
+     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews()
@@ -37,7 +37,7 @@ builder.Services.AddControllersWithViews()
         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
     });
 builder.Services.AddServices();
-//builder.Services.AddResponseCaching();
+builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 
@@ -68,20 +68,21 @@ app.UseEndpoints(endpoints =>
       pattern: "{controller=Home}/{action=Index}/{id?}"
     );
 
-   // endpoints.MapControllerRoute(
-     // name: "areas",
-     // pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-  // );
+     endpoints.MapControllerRoute(
+     name: "areas",
+     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+     );
+   
 
-   // endpoints.MapControllerRoute(
-   //   name: "carDetails",
-   //   pattern: "Car/Details/{id}/{information}"
-   // );
+     endpoints.MapControllerRoute(
+       name: "carDetails",
+       pattern: "Car/Details/{id}/{information}"
+     );
 
     endpoints.MapRazorPages();
 });
 
 
 
-//app.UseResponseCaching();
+app.UseResponseCaching();
 app.Run();

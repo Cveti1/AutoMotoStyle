@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMotoStyle.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoMotoStyle.Core.Models.Car
 {
-    public class CarServiceModel
+    public class CarServiceModel :ICarModel
     {
         public int Id { get; init; }
 

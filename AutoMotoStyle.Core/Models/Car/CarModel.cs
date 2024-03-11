@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using static AutoMotoStyle.Infrastructure.Data.DataConstants;
+using AutoMotoStyle.Core.Contracts;
 
 
 namespace AutoMotoStyle.Core.Models.Car
 {
-    public class CarModel
+    public class CarModel: ICarModel
     {
         public int Id { get; set; }
 

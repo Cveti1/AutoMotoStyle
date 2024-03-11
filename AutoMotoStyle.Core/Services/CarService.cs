@@ -176,7 +176,7 @@ namespace AutoMotoStyle.Core.Services
                         ImageUrl = h.ImageUrl,
                         Description = h.Description
                     })
-                    .Take(5)
+                    .Take(4)
                     .ToListAsync();
             
         }
