@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using static AutoMotoStyle.Infrastructure.Data.DataConstants;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace AutoMotoStyle.Infrastructure.Data.Models
 {

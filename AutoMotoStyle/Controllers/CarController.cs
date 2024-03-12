@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using AutoMotoStyle.Core.Extensions;
+using static AutoMotoStyle.Areas.Admin.Constants.AdminConstants;
 
 namespace AutoMotoStyle.Controllers
 {
@@ -51,10 +52,10 @@ namespace AutoMotoStyle.Controllers
 
         public async Task<IActionResult> Mine()
         {
-         //   if (User.IsInRole(AdminRolleName))
-          //  {
-           //     return RedirectToAction("Mine", "House", new { area = AreaName });
-           // }
+            if (User.IsInRole(AdminRolleName))
+           {
+                return RedirectToAction("Mine", "Car", new { area = AreaName });
+            }
 
             IEnumerable<CarServiceModel> myCars;
             var userId = User.Id();

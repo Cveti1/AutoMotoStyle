@@ -1,4 +1,5 @@
 using AutoMotoStyle.Infrastructure.Data;
+using AutoMotoStyle.Infrastructure.Data.Models;
 using AutoMotoStyle.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -63,16 +64,15 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllerRoute(
+	endpoints.MapControllerRoute(
+	name: "areas",
+	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+	);
+
+	endpoints.MapControllerRoute(
       name: "default",
       pattern: "{controller=Home}/{action=Index}/{id?}"
-    );
-
-     endpoints.MapControllerRoute(
-     name: "areas",
-     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-     );
-   
+    ); 
 
      endpoints.MapControllerRoute(
        name: "carDetails",

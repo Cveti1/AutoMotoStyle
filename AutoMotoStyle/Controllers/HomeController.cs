@@ -2,6 +2,7 @@
 using AutoMotoStyle.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using static AutoMotoStyle.Areas.Admin.Constants.AdminConstants;
 
 namespace AutoMotoStyle.Controllers
 {
@@ -20,15 +21,16 @@ namespace AutoMotoStyle.Controllers
 
         public async Task<IActionResult> Index()
         {
-           // if (User.IsInRole(AdminRolleName))
-           // {
-           //     return RedirectToAction("Index", "Admin", new { area = "Admin" });
-          //
-            var model = await carService.HomePageCars();
+            if (User.IsInRole(AdminRolleName))
+            {
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
+			}
 
-            return View(model);
+			var model = await carService.HomePageCars();
+
+                return View(model);
+            
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

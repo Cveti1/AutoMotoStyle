@@ -17,7 +17,7 @@ namespace AutoMotoStyle.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.25")
+                .HasAnnotation("ProductVersion", "6.0.27")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -354,6 +354,10 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -406,20 +410,22 @@ namespace AutoMotoStyle.Infrastructure.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
                     b.HasData(
                         new
                         {
                             Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "335c64ee-116f-43b1-92db-e9e9525dcf60",
+                            ConcurrencyStamp = "a408b7a1-0f8e-4bd0-892c-b6eb0fa38890",
                             Email = "dealer@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "dealer@mail.com",
                             NormalizedUserName = "dealer@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGExmiUHEYukBvMYkilOx9IF8qp02ziz5eUcDhLtEJxFgcNa9XxBu3tEbGY660T0Ow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBqBAM8qmVn7gRLXxs/hQGtnH1Jlh2UppIym90sbeDIERRsg/CxiFlS8VoRqcGLo7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ce925f7e-545d-4b50-8787-f05a78b81e7b",
+                            SecurityStamp = "086c788e-9b92-4f57-97c3-55a74c3e1162",
                             TwoFactorEnabled = false,
                             UserName = "dealer@mail.com"
                         },
@@ -427,15 +433,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "671a7c8c-0681-4673-8068-9f7035247c15",
+                            ConcurrencyStamp = "534c06ed-98a7-4cc9-a23f-87bfc0116b25",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPSIhC2oWoYkfDQmrYBzsb+d6OSYrLEsgfcKw9CjPPkcDIhcd+lrN9Mb/fkrS7d0Tw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL8sIzyEWXwFCjkKR1SkkySlRx8Urdd6tGaJq4Gl8kwUMHVNLmtMYsj8Gc7dWKdofA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2e739940-b833-4395-ba8f-f711ef186baa",
+                            SecurityStamp = "ba898c61-fbe1-431f-9ffb-a5ec8e1b30f4",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         });
@@ -526,6 +532,26 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("AutoMotoStyle.Infrastructure.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
             modelBuilder.Entity("AutoMotoStyle.Infrastructure.Data.Models.Car", b =>
                 {
                     b.HasOne("AutoMotoStyle.Infrastructure.Data.Models.Dealer", "Dealer")
@@ -569,7 +595,7 @@ namespace AutoMotoStyle.Infrastructure.Migrations
 
             modelBuilder.Entity("AutoMotoStyle.Infrastructure.Data.Models.Dealer", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("AutoMotoStyle.Infrastructure.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
