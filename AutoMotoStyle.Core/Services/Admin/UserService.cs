@@ -19,14 +19,12 @@ namespace AutoMotoStyle.Core.Services.Admin
         {
             List<UserServiceModel> result;
 
-            result = await repo.AllReadonly<Dealer>()
-               // .Where(a => a.User.IsActive)
+            result = await repo.AllReadonly<Dealer>()               
                 .Select(a => new UserServiceModel()
                 {
                     UserId = a.UserId,
                     Email = a.User.Email,
-                    FullName = a.DealerName,
-                   // FullName = $"{a.User.FirstName} {a.User.LastName}",
+                    FullName = a.DealerName,                  
                     PhoneNumber = a.PhoneNumber
                 })
                 .ToListAsync();
@@ -34,8 +32,7 @@ namespace AutoMotoStyle.Core.Services.Admin
             string[] dealerIds = result.Select(a => a.UserId).ToArray();
 
             result.AddRange(await repo.AllReadonly<IdentityUser>()
-                .Where(u => dealerIds.Contains(u.Id) == false)
-                //.Where(u => u.IsActive)
+                .Where(u => dealerIds.Contains(u.Id) == false)                
                 .Select(u => new UserServiceModel()
                 {
                     UserId = u.Id,
@@ -45,12 +42,5 @@ namespace AutoMotoStyle.Core.Services.Admin
 
             return result;
         }
-
-      //  public async Task<string> UserFullName(string userId)
-       // {
-          //  var user = await repo.GetByIdAsync<ApplicationUser>(userId);
-
-         //   return $"{user?.FirstName} {user?.LastName}".Trim();
-       // }
     }
 }
