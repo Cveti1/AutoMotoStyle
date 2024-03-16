@@ -192,6 +192,33 @@ namespace AutoMotoStyle.UnitTests
      
         }
 
+   //     [Test]
+   //     public async Task Test_GetCarTypeId()
+       // {
+        //    var loggerMock = new Mock<ILogger<CarService>>();
+        //    logger = loggerMock.Object;
+         //   var repo = new Repository(applicationDbContext);
+         //   carService = new CarService(repo, logger);
+
+          ///  await repo.AddAsync(new Infrastructure.Data.Models.Type()
+          //  {
+           //     Id = 5,
+            //    TypeName = "new type"
+          //  });
+
+            
+
+         //   await repo.SaveChangesAsync();
+         //   var carType = await carService.GetCarTypeId(5);
+
+           // Assert.That(carType.Equals(5), Is.True);
+            // return (await repo.GetByIdAsync<Car>(carId)).TypeId;
+            //Assert.That(allCars.Equals(3), Is.False);
+         //   Assert.That(carType.Any(h => h.Id == 5), Is.True);
+      //  }
+
+
+
         [TearDown]
           public void TearDown()
           {
