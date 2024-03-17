@@ -338,7 +338,7 @@ namespace AutoMotoStyle.Core.Services
             if (car != null && car.RenterId != null)
             {
                 throw new ArgumentException("Car is already rented");
-           }
+            }
 
             car.RenterId = currentUserId;
 

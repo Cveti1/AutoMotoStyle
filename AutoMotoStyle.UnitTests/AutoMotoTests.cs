@@ -274,6 +274,86 @@ namespace AutoMotoStyle.UnitTests
             Assert.That(existId, Is.False);
         }
 
+        [Test]
+        public async Task Test_IsRentedByUserWithId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var existId = await carService.IsRentedByUserWithId(1, "1");
+            Assert.That(existId, Is.False);
+
+        }
+
+        [Test]
+        public async Task Test_IsRented()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var existId_1 = await carService.IsRented(2);
+            Assert.That(existId_1, Is.True);
+
+            var existId_2 = await carService.IsRented(3);
+            Assert.That(existId_2, Is.False);
+
+        }
+
+        [Test]
+        public async Task Test_Rent()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+
+            await carService.Rent(1, "1");
+            await repo.SaveChangesAsync();
+
+            var newCar = carService.IsRented(1);
+            Assert.That(newCar.Id==3, Is.False);
+        }
+
+        
+        [Test]
+        public async Task Test_Leave()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var leavedCar = carService.Leave(3);
+            Assert.That(leavedCar.Id == 3, Is.False);
+
+        }
+
+        [Test]
+        public async Task Test_Delete()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var deletedCar = carService.Delete(3);
+
+            await repo.SaveChangesAsync();
+            
+            Assert.That(deletedCar.Id==3, Is.False);
+
+        }
+
+
+
+
+
+
         [TearDown]
           public void TearDown()
           {
