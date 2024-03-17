@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using AutoMotoStyle.Infrastructure.Data.Models;
 using System;
 using AutoMotoStyle.Core.Models.Car;
+using System.Runtime.ConstrainedExecution;
 
 
 namespace AutoMotoStyle.UnitTests
@@ -18,6 +19,7 @@ namespace AutoMotoStyle.UnitTests
         private  IRepository repo;
         private  ILogger<CarService>logger;
         private  ICarService carService;
+        private  IDealerService dealerService;
         private ApplicationDbContext applicationDbContext;
 
         [SetUp]
@@ -172,7 +174,7 @@ namespace AutoMotoStyle.UnitTests
             var repo = new Repository(applicationDbContext);
             carService = new CarService(repo, logger);
 
-            var allCars = await carService.Create(new CarModel()
+            var newCar = await carService.Create(new CarModel()
             {
                 Id = 10,
                 Brand = "Kawasaki",
@@ -188,36 +190,89 @@ namespace AutoMotoStyle.UnitTests
 
             await repo.SaveChangesAsync();
 
-            Assert.That(allCars.Equals(3), Is.False);
-     
+            Assert.That(newCar.Equals(3), Is.False);
+  }
+
+        [Test]
+        public async Task Test_GetCarTypeId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var carType = await carService.GetCarTypeId(1);
+            Assert.That(carType.Equals(1), Is.True);
+            Assert.That(carType.Equals(3), Is.False);
         }
 
-   //     [Test]
-   //     public async Task Test_GetCarTypeId()
-       // {
-        //    var loggerMock = new Mock<ILogger<CarService>>();
-        //    logger = loggerMock.Object;
-         //   var repo = new Repository(applicationDbContext);
-         //   carService = new CarService(repo, logger);
+        [Test]
+        public async Task Test_GetCarTransmissionId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
 
-          ///  await repo.AddAsync(new Infrastructure.Data.Models.Type()
-          //  {
-           //     Id = 5,
-            //    TypeName = "new type"
-          //  });
+            var carTransmission = await carService.GetCarTransmissionId(2);
+            Assert.That(carTransmission.Equals(3), Is.True);
+            Assert.That(carTransmission.Equals(1), Is.False);
+        }
 
-            
+        [Test]
+        public async Task Test_GetCarFuelId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
 
-         //   await repo.SaveChangesAsync();
-         //   var carType = await carService.GetCarTypeId(5);
+            var carFuel = await carService.GetCarFuelId(3);
+            Assert.That(carFuel.Equals(2), Is.True);
+            Assert.That(carFuel.Equals(1), Is.False);
+        }
 
-           // Assert.That(carType.Equals(5), Is.True);
-            // return (await repo.GetByIdAsync<Car>(carId)).TypeId;
-            //Assert.That(allCars.Equals(3), Is.False);
-         //   Assert.That(carType.Any(h => h.Id == 5), Is.True);
-      //  }
+        [Test]
+        public async Task Test_AllTypesName()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
 
+            var typeNames = await carService.AllTypesNames();
+            Assert.That(typeNames.Count(), Is.EqualTo(4));
+            Assert.That(typeNames.Count(), Is.Not.EqualTo(3));
 
+        }
+
+        [Test]
+        public async Task Test_ExistCarId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var exist_first = await carService.Exists(2);
+            Assert.That(exist_first, Is.True );
+
+            var exist_second = await carService.Exists(4);
+            Assert.That(exist_second, Is.False);
+        }
+
+        [Test]
+        public async Task Test_HasDealerWithId()
+
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var existId = await carService.HasDealerWithId(2, "1");
+            Assert.That(existId, Is.False);
+        }
 
         [TearDown]
           public void TearDown()
