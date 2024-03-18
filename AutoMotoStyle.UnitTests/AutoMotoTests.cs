@@ -9,6 +9,7 @@ using AutoMotoStyle.Infrastructure.Data.Models;
 using System;
 using AutoMotoStyle.Core.Models.Car;
 using System.Runtime.ConstrainedExecution;
+using AutoMotoStyle.Core.Models.Dealer;
 
 
 namespace AutoMotoStyle.UnitTests
@@ -137,7 +138,6 @@ namespace AutoMotoStyle.UnitTests
 
             await repo.SaveChangesAsync();
 
-            await repo.SaveChangesAsync();
             var carTransmission = await carService.AllTransmissions();
 
             Assert.That(carTransmission.Any(h => h.Id == 8), Is.True);
@@ -349,10 +349,51 @@ namespace AutoMotoStyle.UnitTests
 
         }
 
+        [Test]
+        public async Task Test_CarDetailsById()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
 
+            var exist = await carService.CarDetailsById(2); 
+            
+            Assert.That(exist.Brand, Is.EqualTo("CHEVROLET"));
+            Assert.That(exist.Model, Is.Not.EqualTo("SUPERB"));
+            Assert.That(exist.Id, Is.Not.EqualTo(3));
 
+        }
 
+        [Test]
+        public async Task Test_AllCarsByDealerId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
 
+            var existCars = await carService.AllCarsByDealerId(1);
+            Assert.That(existCars.Count(), Is.EqualTo(3));
+
+        }
+
+        [Test]
+        public async Task Test_AllCarsByUsarId()
+        {
+            var loggerMock = new Mock<ILogger<CarService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(applicationDbContext);
+            carService = new CarService(repo, logger);
+
+            var existCars = await carService.AllCarsByUsarId("1");
+            Assert.That(existCars.Count(), Is.EqualTo(0));
+            Assert.That(existCars.Count(), Is.Not.EqualTo(3));
+        
+
+        }
+
+        
 
         [TearDown]
           public void TearDown()
