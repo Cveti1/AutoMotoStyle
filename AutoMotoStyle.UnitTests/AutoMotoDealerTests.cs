@@ -42,71 +42,53 @@ namespace AutoMotoStyle.UnitTests
         [Test]
         public async Task Test_ExistDealerId()
         {
-         
             var repo = new Repository(applicationDbContext);
-          
             dealerService = new DealerService(repo);
+
             var exist = await dealerService.ExistsById("3");
-           
-           Assert.That(exist, Is.False);
+            Assert.That(exist, Is.False);
 
         }
+
 
         [Test]
         public async Task Test_GetDealerId()
         {
-            var loggerMock = new Mock<ILogger<CarService>>();
-            logger = loggerMock.Object;
             var repo = new Repository(applicationDbContext);
             dealerService = new DealerService(repo);
 
-
-           
             var dealerId = await dealerService.GetDealerId("3");
-               Assert.That(dealerId, Is.EqualTo((0)));
+            Assert.That(dealerId, Is.EqualTo((0)));
 
-    
         }
-        /*
-
+        
+        
         [Test]
         public async Task Test_CreateDealer()
         {
-            var loggerMock = new Mock<ILogger<CarService>>();
-            logger = loggerMock.Object;
             var repo = new Repository(applicationDbContext);
             dealerService = new DealerService(repo);
 
+            var newDealer = dealerService.Create("guest-a5-7a9a-4ba7-8768-66ba10cd-new",
+                "newDealer", "0123456789");
 
-            var dealerCar = await dealerService.Create(new Dealer("5", "new", "0123456789");
-          
-
-
-            var dealer = new Dealer()
-            {
-                UserId = "5",
-                DealerName = "new dealer",
-                PhoneNumber = "0123456789"
-            };
-
-            await repo.SaveChangesAsync();
-
-            var countDealers = repo.AllReadonly<Dealer>().Count();
-
-            Assert.That(countDealers, Is.Not.EqualTo(4));
-            Assert.That(dealer.Equals(1), Is.False);
-
-
-
-
+            var countDealer =  repo.AllReadonly<Dealer>().Count();
+            Assert.That(countDealer, Is.EqualTo(2));
         }
 
 
-        */
+        [Test]
+        public async Task Test_UserHasRents()
+        {
+            var repo = new Repository(applicationDbContext);
+            dealerService = new DealerService(repo);
 
+            var existId = await dealerService.UserHasRents("1");
+            Assert.That(existId, Is.False);
 
+        }
 
-
+        
         [TearDown]
         public void TearDown()
         {

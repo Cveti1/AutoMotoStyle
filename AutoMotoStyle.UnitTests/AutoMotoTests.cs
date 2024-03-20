@@ -188,9 +188,13 @@ namespace AutoMotoStyle.UnitTests
                 FuelId = 1
             }, 2);
 
+            
             await repo.SaveChangesAsync();
 
             Assert.That(newCar.Equals(3), Is.False);
+           
+            
+            
   }
 
         [Test]
