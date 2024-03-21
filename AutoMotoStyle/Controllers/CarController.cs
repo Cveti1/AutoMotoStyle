@@ -9,6 +9,7 @@ using Microsoft.VisualBasic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using AutoMotoStyle.Core.Extensions;
 using static AutoMotoStyle.Areas.Admin.Constants.AdminConstants;
+using System.Data;
 
 namespace AutoMotoStyle.Controllers
 {
@@ -96,8 +97,10 @@ namespace AutoMotoStyle.Controllers
 
 
         [HttpGet]      
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add() 
         {
+          
+
             if ((await dealerService.ExistsById(User.Id()))==false)
             {
                 return RedirectToAction(nameof(DealerController.Become), "Dealer");
@@ -117,7 +120,8 @@ namespace AutoMotoStyle.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(CarModel car)
         {
-            if ((await dealerService.ExistsById(User.Id())) == false)
+            
+            if ((await dealerService.ExistsById(User.Id())) == false )
             {
                 return RedirectToAction(nameof(DealerController.Become), "Dealer");
             }

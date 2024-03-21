@@ -40,6 +40,7 @@ namespace AutoMotoStyle.Controllers
         [HttpPost]
         public async Task<IActionResult> Become(BecomeDealer model)
         {
+            
             var userId = User.Id();
 
             if (!ModelState.IsValid)
@@ -53,7 +54,7 @@ namespace AutoMotoStyle.Controllers
               
             }
 
-           await dealerService.Create(userId, model.DealerName, model.PhoneNumber);
+            await dealerService.Create(userId, model.DealerName, model.PhoneNumber);
 
             return RedirectToAction("All", "Car");
         }
