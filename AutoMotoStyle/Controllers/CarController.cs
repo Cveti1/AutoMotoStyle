@@ -54,7 +54,7 @@ namespace AutoMotoStyle.Controllers
         public async Task<IActionResult> Mine()
         {
             if (User.IsInRole(AdminRolleName))
-           {
+            {
                 return RedirectToAction("Mine", "Car", new { area = AreaName });
             }
 
@@ -93,6 +93,7 @@ namespace AutoMotoStyle.Controllers
             }
 
             return View(model);
+           //return RedirectToAction(nameof());
         }
 
 

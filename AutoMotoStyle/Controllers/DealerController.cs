@@ -25,7 +25,8 @@ namespace AutoMotoStyle.Controllers
 
             if (await dealerService.ExistsById(User.Id()))
             {
-                ModelState.AddModelError("Error", "You are already dealer!");
+                 ModelState.AddModelError("Error", "You are already dealer!");
+            
 
             }
 
