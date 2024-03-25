@@ -24,6 +24,7 @@ namespace AutoMotoStyle.Infrastructure.Data
         public DbSet<Transmission> Transmissions { get; set; } = null!;
 
         public DbSet<Dealer> Dealers { get; set; } = null!;
+        public DbSet<Service> Services { get; set; } = null!;
         
 
 
@@ -36,6 +37,7 @@ namespace AutoMotoStyle.Infrastructure.Data
             builder.ApplyConfiguration(new FuelConfiguration());
             builder.ApplyConfiguration(new TransmissionConfiguration());
             builder.ApplyConfiguration(new CarConfiguration());
+            builder.ApplyConfiguration(new ServiceConfiguration());
 
             base.OnModelCreating(builder);
         }

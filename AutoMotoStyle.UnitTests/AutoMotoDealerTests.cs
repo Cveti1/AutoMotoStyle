@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMotoStyle.Core.Contracts;
-using AutoMotoStyle.Core.Models.Car;
+﻿using AutoMotoStyle.Core.Contracts;
 using AutoMotoStyle.Core.Services;
 using AutoMotoStyle.Infrastructure.Data;
 using AutoMotoStyle.Infrastructure.Data.Common;
 using AutoMotoStyle.Infrastructure.Data.Models;
-using AutoMotoStyle.Infrastructure.Migrations;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;

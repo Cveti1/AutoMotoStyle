@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutoMotoStyle.Infrastructure.Migrations
 {
-    public partial class Create : Migration
+    public partial class New : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,6 +59,20 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Fuels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -225,21 +239,17 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                     Year = table.Column<int>(type: "int", nullable: false),
                     FuelId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Price = table.Column<decimal>(type: "money", precision: 18, scale: 2, nullable: false),
                     TypeId = table.Column<int>(type: "int", nullable: false),
                     TransmissionId = table.Column<int>(type: "int", nullable: false),
                     DealerId = table.Column<int>(type: "int", nullable: false),
-                    RenterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    RenterId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cars_AspNetUsers_RenterId",
-                        column: x => x.RenterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Cars_Dealers_DealerId",
                         column: x => x.DealerId,
@@ -271,8 +281,8 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "dealer-7-4421-47c0-a9ba-38b9a5ddb357", 0, "45f03ea1-6514-43b3-8278-03440688299c", "dealer@mail.com", false, false, null, "dealer@mail.com", "dealer@mail.com", "AQAAAAEAACcQAAAAED6JXgYO5Sr/kYKw2N/ayzoq/bnuztGawnZ5IoVDnmuTjs4G+Yre5Jvxv50YOTdiGg==", null, false, "3203d5c4-50b1-471d-bcbc-f24f27c2adfe", false, "dealer@mail.com" },
-                    { "guest-a5-7a9a-4ba7-8768-66ba10cd0979", 0, "73e0c640-e4de-4968-8d5d-722e747052fa", "guest@mail.com", false, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEKcdf87jlXwBWHrx1DkEIO4j2utrX4t86ZomIhJ7eWGuCiTtYGL4vaChZAAStJ03qg==", null, false, "2614a5d4-17be-4a86-b5b5-b56813279d5f", false, "guest@mail.com" }
+                    { "dealer-7-4421-47c0-a9ba-38b9a5ddb357", 0, "032d6388-d18e-4085-8111-cd37c4cf5629", "dealer@mail.com", false, false, null, "dealer@mail.com", "dealer@mail.com", "AQAAAAEAACcQAAAAEP3Q3kK8WAEN0+XIWdcV/ei8j2CsXAnmJklyk3cmb8Oqqx2Y1dwyRmIhy8KNB6rQ+w==", null, false, "44f7f3b9-61b3-4f2b-85d6-fe83318928d8", false, "dealer@mail.com" },
+                    { "guest-a5-7a9a-4ba7-8768-66ba10cd0979", 0, "1033cb85-30ad-413f-a233-0b7f0534e465", "guest@mail.com", false, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEFf4TTz7DBYxuj7Shuc5haHcyImDq2XmEyHQDuZ3TOOlFmlotKBmBicnfd1XpEQKNw==", null, false, "46e16675-3cd0-4e17-a901-35ef12704d52", false, "guest@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -284,6 +294,17 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                     { 2, "Diesel" },
                     { 3, "Hybrid" },
                     { 4, "Electric" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Services",
+                columns: new[] { "Id", "ImageUrl", "Name" },
+                values: new object[,]
+                {
+                    { 1, "https://imgrabo.com/pics/deals/15898130566073.jpg", "Car washing" },
+                    { 2, "https://www.totalcardiagnostics.com/learn/wp-content/uploads/2015/10/car-repair-770x269.jpg", "Car repair and service" },
+                    { 3, "https://www.netsuite.com/portal/assets/img/business-articles/accounting-software/social-quarterly-annual-business-reviews.jpg", "Annual technical reviews" },
+                    { 4, "https://www.gtplanet.net/wp-content/uploads/2022/10/image-6-11.jpg", "Тuning" }
                 });
 
             migrationBuilder.InsertData(
@@ -314,18 +335,18 @@ namespace AutoMotoStyle.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "Brand", "DealerId", "Description", "FuelId", "ImageUrl", "Model", "Price", "RenterId", "TransmissionId", "TypeId", "Year" },
-                values: new object[] { 1, "AUDI", 1, "Engine 2.0L TFSI with a power of 223 hp, 4x4 drive. Equipment:Brown leather interior, Navigation system, Climatronic. Front seat adjustment, Front seat heating, Steering wheel adjustment, Heated mirrors, Stability control", 1, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.autocasion.com%2Fmarcas%2Faudi%2Fa3-compactos%2Fa3-sedan-2-0tdi-design-edition-quattro-150-4-puertas-72727&psig=AOvVaw1XJMe-aG9baMYW6MAZt9Rw&ust=1708107620224000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCMiN9PH6rYQDFQAAAAAdAAAAABAE", "A3 QUATTRO", 23000.00m, null, 1, 1, 2016 });
+                columns: new[] { "Id", "Brand", "DealerId", "Description", "FuelId", "ImageUrl", "IsActive", "Model", "Price", "RenterId", "TransmissionId", "TypeId", "Year" },
+                values: new object[] { 1, "AUDI", 1, "Engine 2.0L TFSI with a power of 223 hp, 4x4 drive. Equipment:Brown leather interior, Navigation system, Climatronic. Front seat adjustment, Front seat heating, Steering wheel adjustment, Heated mirrors, Stability control", 1, "https://www.coches.com/fotos_historicas/audi/A3-Sedan-2.0-TDI-Quattro-S-Line-2016/audi_a3-sedan-2-0-tdi-quattro-s-line-2016_r14.jpg", true, "A3 QUATTRO", 1300.00m, null, 1, 1, 2016 });
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "Brand", "DealerId", "Description", "FuelId", "ImageUrl", "Model", "Price", "RenterId", "TransmissionId", "TypeId", "Year" },
-                values: new object[] { 2, "CHEVROLET", 1, "7.0L V8 E-Force Supercharged engine with 730 hp, tire size P275/35ZR18; P325/30ZR19, alloy wheels. Edelbrok - screw compressor, installed in a tuning studio in Germany, chassis number: 1G1YY26E075126150.", 1, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pjsautoworld.com%2Fvehicles%2F487%2F2007-chevrolet-corvette-z06-procharged&psig=AOvVaw2IDhTWbbk8WPObH3y2r_Wi&ust=1708107533403000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPD1vcj6rYQDFQAAAAAdAAAAABAE", "CORVETTE ZO6", 44000.00m, "guest-a5-7a9a-4ba7-8768-66ba10cd0979", 3, 1, 2007 });
+                columns: new[] { "Id", "Brand", "DealerId", "Description", "FuelId", "ImageUrl", "IsActive", "Model", "Price", "RenterId", "TransmissionId", "TypeId", "Year" },
+                values: new object[] { 2, "CHEVROLET", 1, "7.0L V8 E-Force Supercharged engine with 730 hp, tire size P275/35ZR18; P325/30ZR19, alloy wheels. Edelbrok - screw compressor, installed in a tuning studio in Germany, chassis number: 1G1YY26E075126150.", 1, "https://cdn.dealeraccelerate.com/pjs/1/456/13143/1920x1440/2007-chevrolet-corvette-z06-procharged.webp", true, "CORVETTE ZO6", 1500.00m, "guest-a5-7a9a-4ba7-8768-66ba10cd0979", 3, 1, 2007 });
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "Brand", "DealerId", "Description", "FuelId", "ImageUrl", "Model", "Price", "RenterId", "TransmissionId", "TypeId", "Year" },
-                values: new object[] { 3, "SKODA", 1, "Engine 2.0L TDI with a power of 190 hp. with. , aluminum rims.Chassis number: TMB1JCNP2H7544236, with registration. Equipment:Leather interior, Navigation system, Front and rear parking sensors, Heated mirrors, LED brake lights", 2, "https://www.google.com/url?sa=i&url=https%3A%2F%2Findianautosblog.com%2F2018-skoda-superb-facelift-render-p286727&psig=AOvVaw17BfdprSt_Dry886ZJKR1u&ust=1708107574130000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJC59tv6rYQDFQAAAAAdAAAAABAE", "SUPERB", 14000.00m, null, 2, 1, 2018 });
+                columns: new[] { "Id", "Brand", "DealerId", "Description", "FuelId", "ImageUrl", "IsActive", "Model", "Price", "RenterId", "TransmissionId", "TypeId", "Year" },
+                values: new object[] { 3, "SKODA", 1, "Engine 2.0L TDI with a power of 190 hp. with. , aluminum rims.Chassis number: TMB1JCNP2H7544236, with registration. Equipment:Leather interior, Navigation system, Front and rear parking sensors, Heated mirrors, LED brake lights", 2, "https://img.indianautosblog.com/resize/750x-/2017/10/2018-Skoda-Superb-facelift-rendering-front-three-quarters.jpg", true, "SUPERB", 1400.00m, null, 2, 1, 2018 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -377,11 +398,6 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                 column: "FuelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_RenterId",
-                table: "Cars",
-                column: "RenterId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Cars_TransmissionId",
                 table: "Cars",
                 column: "TransmissionId");
@@ -416,6 +432,9 @@ namespace AutoMotoStyle.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cars");
+
+            migrationBuilder.DropTable(
+                name: "Services");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

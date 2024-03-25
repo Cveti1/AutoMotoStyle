@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoMotoStyle.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240302231653_NewMigration")]
-    partial class NewMigration
+    [Migration("20240325140042_New")]
+    partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.25")
+                .HasAnnotation("ProductVersion", "6.0.27")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -50,8 +50,8 @@ namespace AutoMotoStyle.Infrastructure.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -66,7 +66,7 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         .HasColumnType("money");
 
                     b.Property<string>("RenterId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TransmissionId")
                         .HasColumnType("int");
@@ -82,8 +82,6 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                     b.HasIndex("DealerId");
 
                     b.HasIndex("FuelId");
-
-                    b.HasIndex("RenterId");
 
                     b.HasIndex("TransmissionId");
 
@@ -102,7 +100,7 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                             ImageUrl = "https://www.coches.com/fotos_historicas/audi/A3-Sedan-2.0-TDI-Quattro-S-Line-2016/audi_a3-sedan-2-0-tdi-quattro-s-line-2016_r14.jpg",
                             IsActive = true,
                             Model = "A3 QUATTRO",
-                            Price = 23000.00m,
+                            Price = 1300.00m,
                             TransmissionId = 1,
                             TypeId = 1,
                             Year = 2016
@@ -117,7 +115,7 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                             ImageUrl = "https://cdn.dealeraccelerate.com/pjs/1/456/13143/1920x1440/2007-chevrolet-corvette-z06-procharged.webp",
                             IsActive = true,
                             Model = "CORVETTE ZO6",
-                            Price = 44000.00m,
+                            Price = 1500.00m,
                             RenterId = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                             TransmissionId = 3,
                             TypeId = 1,
@@ -133,7 +131,7 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                             ImageUrl = "https://img.indianautosblog.com/resize/750x-/2017/10/2018-Skoda-Superb-facelift-rendering-front-three-quarters.jpg",
                             IsActive = true,
                             Model = "SUPERB",
-                            Price = 14000.00m,
+                            Price = 1400.00m,
                             TransmissionId = 2,
                             TypeId = 1,
                             Year = 2018
@@ -215,6 +213,55 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = 4,
                             FuelName = "Electric"
+                        });
+                });
+
+            modelBuilder.Entity("AutoMotoStyle.Infrastructure.Data.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageUrl = "https://imgrabo.com/pics/deals/15898130566073.jpg",
+                            Name = "Car washing"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageUrl = "https://www.totalcardiagnostics.com/learn/wp-content/uploads/2015/10/car-repair-770x269.jpg",
+                            Name = "Car repair and service"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageUrl = "https://www.netsuite.com/portal/assets/img/business-articles/accounting-software/social-quarterly-annual-business-reviews.jpg",
+                            Name = "Annual technical reviews"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageUrl = "https://www.gtplanet.net/wp-content/uploads/2022/10/image-6-11.jpg",
+                            Name = "Тuning"
                         });
                 });
 
@@ -413,15 +460,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9275b023-e413-49a0-b381-3a0263ac8414",
+                            ConcurrencyStamp = "032d6388-d18e-4085-8111-cd37c4cf5629",
                             Email = "dealer@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "dealer@mail.com",
                             NormalizedUserName = "dealer@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJmjc3VG6pUVdiAC4UQIY/zWP0uV6zItOTC0fhM9bOrcardjdfTY2V3uSf7N6iH6bg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP3Q3kK8WAEN0+XIWdcV/ei8j2CsXAnmJklyk3cmb8Oqqx2Y1dwyRmIhy8KNB6rQ+w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4485dbfc-78a5-412d-8965-60aefd03e490",
+                            SecurityStamp = "44f7f3b9-61b3-4f2b-85d6-fe83318928d8",
                             TwoFactorEnabled = false,
                             UserName = "dealer@mail.com"
                         },
@@ -429,15 +476,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "35c972d5-4884-46a3-82f4-2a423fab8b97",
+                            ConcurrencyStamp = "1033cb85-30ad-413f-a233-0b7f0534e465",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAKiard2Q1IKiyNDX9iqx3k9ZzBVJA5d98TanShN2i+stAyMd63rwzU0Q+0713+lig==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFf4TTz7DBYxuj7Shuc5haHcyImDq2XmEyHQDuZ3TOOlFmlotKBmBicnfd1XpEQKNw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1edb6dd3-5b6e-4c3b-8f3c-b19ffa5974ff",
+                            SecurityStamp = "46e16675-3cd0-4e17-a901-35ef12704d52",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         });
@@ -542,10 +589,6 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Renter")
-                        .WithMany()
-                        .HasForeignKey("RenterId");
-
                     b.HasOne("AutoMotoStyle.Infrastructure.Data.Models.Transmission", "Transmission")
                         .WithMany("Cars")
                         .HasForeignKey("TransmissionId")
@@ -561,8 +604,6 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                     b.Navigation("Dealer");
 
                     b.Navigation("Fuel");
-
-                    b.Navigation("Renter");
 
                     b.Navigation("Transmission");
 

@@ -11,11 +11,9 @@ namespace AutoMotoStyle.Infrastructure.Data
     {
         //Type
         public const int MaxType = 35;
-        public const int MinType = 4;
 
         //Fuel
         public const int MaxFuel = 15;
-        public const int MinFuel = 3;
 
         // Car
         public const int MaxBrand = 50;
@@ -27,11 +25,18 @@ namespace AutoMotoStyle.Infrastructure.Data
         public const int MaxDescription = 500;
         public const int MinDescription = 50;
 
-        public const int MaxImageUrl = 2000;
+        public const int MaxImageUrl = 1000;
+
+
+        // Service
+        public const int MaxServiceName = 50;
+        public const int MinServiceName = 4;
+
+        public const int MaxServiceImageUrl = 1000;
 
 
         // User
-        public const int MaxUserFirstName = 15;
+		public const int MaxUserFirstName = 15;
         public const int MinUserFirstName = 3;
 
         public const int MaxUserLastName = 15;
