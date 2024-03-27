@@ -6,10 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using Microsoft.Extensions.Logging;
 using AutoMotoStyle.Infrastructure.Data.Models;
-using System;
 using AutoMotoStyle.Core.Models.Car;
-using System.Runtime.ConstrainedExecution;
-using AutoMotoStyle.Core.Models.Dealer;
+
 
 
 namespace AutoMotoStyle.UnitTests
