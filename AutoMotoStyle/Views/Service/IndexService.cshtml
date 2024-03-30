@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ServiceFormModel>
+
+@{
+	ViewBag.Title = "Additional Services";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr/>
+<br/>
+
+@if (Model.Any())
+{
+	<div class="row">
+		@foreach (var service in Model)
+		{
+			<partial name="_ServicePartial" model="@service" />
+		}
+	</div>
+}
+else
+{
+	<h3 class="text-center">No additional services!</h3>
+}

@@ -1,0 +1,21 @@
+﻿@model ServiceFormModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+ 
+	    <img class="card-img-top" src="@Model.ImageUrl" alt="Service Image">
+
+	    <div class="card-body text-center">
+            
+		    <h4>@Model.Name</h4>
+		    <br />
+
+			<form asp-area="" asp-controller="Service" asp-action="ServiceDetails"
+		          asp-route-id="@Model.Id" method="post">
+			    <input class="btn btn-primary" type="submit" value="Details" />
+		    </form>
+
+	    </div>
+    </div>
+</div>
+
