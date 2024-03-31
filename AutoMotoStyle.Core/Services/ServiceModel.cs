@@ -1,5 +1,6 @@
 ﻿using AutoMotoStyle.Core.Contracts;
 using AutoMotoStyle.Core.Models.Car;
+using AutoMotoStyle.Core.Models.Dealer;
 using AutoMotoStyle.Core.Models.Service;
 using AutoMotoStyle.Infrastructure.Data.Common;
 using AutoMotoStyle.Infrastructure.Data.Models;
@@ -29,9 +30,24 @@ namespace AutoMotoStyle.Core.Services
                 })
                 .ToListAsync();
         }
-	}
-}
 
+        public async Task<ServiceFormModel> ServiceDetailsById(int id)
+        {
+            
+            return await repo.AllReadonly<Service>()
+                .Where(s => s.Id == id)
+                .Select(s => new ServiceFormModel()
+                {
+                    Id = id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    ImageUrl = s.ImageUrl
+                })
+                .FirstAsync();
+
+        }
+    }
+}
 
 
 

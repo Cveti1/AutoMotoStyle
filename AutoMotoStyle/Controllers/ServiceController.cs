@@ -35,7 +35,31 @@ namespace AutoMotoStyle.Controllers
             return View(model);
 
            }
-	}
+
+
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ServiceDetails(int id )
+        {
+            //, string information
+            //  if ((await serviceModel.Exists(id)) == false)
+             // {
+              //   return RedirectToAction(nameof(Mine));
+             // }
+
+            var serv = await serviceModel.ServiceDetailsById(id);
+
+           // if (information != model.GetInformation())
+          //  {
+            //    TempData["ErrorMessage"] = "Error!";
+
+          //      return RedirectToAction("Index", "Home");
+         //   }
+
+            return View(serv);
+
+        }
+    }
 }
 
 
