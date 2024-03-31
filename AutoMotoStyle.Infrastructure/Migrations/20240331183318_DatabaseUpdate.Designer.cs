@@ -4,6 +4,7 @@ using AutoMotoStyle.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoMotoStyle.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331183318_DatabaseUpdate")]
+    partial class DatabaseUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,17 +139,17 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            Brand = "TOYOTA",
+                            Brand = "FIAT",
                             DealerId = 1,
-                            Description = "The Toyota Land Cruiser SUV is a high-performance vehicle. It comes with a turbocharged 2.4-liter four-cylinder engine. The powerplant makes 326 horsepower and 465 pound-feet of torque compared to the 381 hp and 401 lb-ft from the old V8. And it can tow up to 6,000 pounds.",
-                            FuelId = 4,
-                            ImageUrl = "https://carnovo.com/wp-content/uploads/2023/12/toyota-land-cruiser-2024-1200x900.jpg",
+                            Description = "It is characterized by strength and low consumption. It is articulated around a 2.3 engine\nWith a new variable geometry turbocharger, among other things, the access mechanic increases its power and torque by 10% compared to the previous 2.0. Probably the most sought after is the 140 HP...or 160, which boasts a specific engine shaft with large bearings, special pistons and a specific turbocharger.",
+                            FuelId = 3,
+                            ImageUrl = "https://www.fiatprofessional.com/content/dam/fiatprofessional/cross/news/details/Ducato-MY2020/fiatprofessional-ducato-grey-commercial-vehicle-mobile-626x386.jpg",
                             IsActive = true,
-                            Model = "LAND CRUISER",
-                            Price = 2000.00m,
-                            TransmissionId = 1,
-                            TypeId = 3,
-                            Year = 2024
+                            Model = "DUCATO",
+                            Price = 2400.00m,
+                            TransmissionId = 2,
+                            TypeId = 2,
+                            Year = 2020
                         },
                         new
                         {
@@ -167,17 +169,17 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         new
                         {
                             Id = 6,
-                            Brand = "FIAT",
+                            Brand = "TOYOTA",
                             DealerId = 1,
-                            Description = "It is characterized by strength and low consumption. It is articulated around a 2.3 engine\nWith a new variable geometry turbocharger, among other things, the access mechanic increases its power and torque by 10% compared to the previous 2.0. Probably the most sought after is the 140 HP...or 160, which boasts a specific engine shaft with large bearings, special pistons and a specific turbocharger.",
-                            FuelId = 3,
-                            ImageUrl = "https://www.fiatprofessional.com/content/dam/fiatprofessional/cross/news/details/Ducato-MY2020/fiatprofessional-ducato-grey-commercial-vehicle-mobile-626x386.jpg",
+                            Description = "The Toyota Land Cruiser SUV is a high-performance vehicle. It comes with a turbocharged 2.4-liter four-cylinder engine. The powerplant makes 326 horsepower and 465 pound-feet of torque compared to the 381 hp and 401 lb-ft from the old V8. And it can tow up to 6,000 pounds.",
+                            FuelId = 4,
+                            ImageUrl = "https://carnovo.com/wp-content/uploads/2023/12/toyota-land-cruiser-2024-1200x900.jpg",
                             IsActive = true,
-                            Model = "DUCATO",
-                            Price = 2400.00m,
-                            TransmissionId = 2,
-                            TypeId = 2,
-                            Year = 2020
+                            Model = "LAND CRUISER",
+                            Price = 2000.00m,
+                            TransmissionId = 1,
+                            TypeId = 3,
+                            Year = 2024
                         });
                 });
 
@@ -512,15 +514,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ebae6780-e527-46ec-a8ae-e6de9e72f7ea",
+                            ConcurrencyStamp = "1aedb3ce-0bfd-4cc6-8973-0901c7d76bd3",
                             Email = "dealer@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "dealer@mail.com",
                             NormalizedUserName = "dealer@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAECFW/CwtRc0lKZXfwasuXIlS+1P+VqB9FNtAmfkine1uvRn5uOxzfpsQmp2DofycsA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEMvM49jq8K6TLlY5ambHhLrrv3x1Lma4aXmq/f8pYJ7+1LuHD28mXCgVWiHSGRSww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f355f6b6-57ed-4a76-a6b2-e82fb8faf729",
+                            SecurityStamp = "d5d6c8a0-3b0d-41d9-ac9c-7195cf0ff25d",
                             TwoFactorEnabled = false,
                             UserName = "dealer@mail.com"
                         },
@@ -528,15 +530,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "272a4dc9-a2b8-4511-b1ab-add782a43cc4",
+                            ConcurrencyStamp = "4dab7e93-1e27-4c63-bb3f-7b31bb434214",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAELUoFOZzRc/c/iMrw89QOmdklC7hC4jwW6CEdqC40qAcv7dd4w1DLvNqwLGuTI74bQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENsaLYDZlO9QAPdghDKIuHq582skqCrV98VKc6BFMwDaQzM2q/I3q38I67zILHOong==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04ae1a9f-369a-499a-b981-246b2f24f38e",
+                            SecurityStamp = "ee9f8d84-709b-45bd-bc0e-5fe5952d57a5",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         });

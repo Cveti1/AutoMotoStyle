@@ -166,7 +166,7 @@ namespace AutoMotoStyle.Core.Services
         public async Task<IEnumerable<CarHomePageModel>> HomePageCars()
         {
                 return await repo.AllReadonly<Car>()                   
-                    .OrderByDescending(h => h.Id)
+                    .OrderBy(h => h.Id)
                     .Select(h => new CarHomePageModel()
                     {
                         Id = h.Id,
@@ -176,7 +176,6 @@ namespace AutoMotoStyle.Core.Services
                         ImageUrl = h.ImageUrl,
                         Description = h.Description
                     })
-                    .Take(4)
                     .ToListAsync();
             
         }
