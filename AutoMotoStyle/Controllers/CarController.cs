@@ -20,8 +20,7 @@ namespace AutoMotoStyle.Controllers
         private readonly ICarService carService;
         private readonly IDealerService dealerService;
        
-      //  private readonly ILogger logger;
-
+     
         public CarController(
             ICarService _carService,
             IDealerService _dealerService)

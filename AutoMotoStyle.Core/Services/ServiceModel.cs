@@ -46,7 +46,8 @@ namespace AutoMotoStyle.Core.Services
                 .FirstAsync();
 
         }
-    }
+
+      }
 }
 
 

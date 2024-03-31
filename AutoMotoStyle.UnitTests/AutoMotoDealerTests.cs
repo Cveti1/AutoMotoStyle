@@ -14,8 +14,6 @@ namespace AutoMotoStyle.UnitTests
     public class AutoMotoDealerTests
     {
         private IRepository repo;
-        private ILogger<CarService> logger;
-        private ICarService carService;
         private IDealerService dealerService;
         private ApplicationDbContext applicationDbContext;
 
@@ -32,7 +30,7 @@ namespace AutoMotoStyle.UnitTests
             applicationDbContext.Database.EnsureCreated();
         }
 
-
+      
         [Test]
         public async Task Test_ExistDealerId()
         {

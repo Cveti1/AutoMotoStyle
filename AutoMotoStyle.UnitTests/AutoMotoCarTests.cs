@@ -13,12 +13,12 @@ using AutoMotoStyle.Core.Models.Car;
 namespace AutoMotoStyle.UnitTests
 {
     [TestFixture]
-    public class AutoMotoTests
+    public class AutoMotoCarTests
     {
         private  IRepository repo;
         private  ILogger<CarService>logger;
         private  ICarService carService;
-        private  IDealerService dealerService;
+      
         private ApplicationDbContext applicationDbContext;
 
         [SetUp]

@@ -58,7 +58,49 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                       TransmissionId=2,
                       TypeId = 1,
                       DealerId = 1                      
-                 }
+                 },
+                new Car()
+                {
+                    Id = 4,
+                    Brand = "SKODA",
+                    Model = "SUPERB",
+                    Year = 2018,
+                    FuelId = 2,
+                    Description = "Engine 2.0L TDI with a power of 190 hp. with. , aluminum rims.Chassis number: TMB1JCNP2H7544236, with registration. Equipment:Leather interior, Navigation system, Front and rear parking sensors, Heated mirrors, LED brake lights",
+                    ImageUrl = "https://img.indianautosblog.com/resize/750x-/2017/10/2018-Skoda-Superb-facelift-rendering-front-three-quarters.jpg",
+                    Price = 1400.00M,
+                    TransmissionId=2,
+                    TypeId = 1,
+                    DealerId = 1
+                },
+                new Car()
+                {
+                    Id = 5,
+                    Brand = "SKODA",
+                    Model = "SUPERB",
+                    Year = 2018,
+                    FuelId = 2,
+                    Description = "Engine 2.0L TDI with a power of 190 hp. with. , aluminum rims.Chassis number: TMB1JCNP2H7544236, with registration. Equipment:Leather interior, Navigation system, Front and rear parking sensors, Heated mirrors, LED brake lights",
+                    ImageUrl = "https://img.indianautosblog.com/resize/750x-/2017/10/2018-Skoda-Superb-facelift-rendering-front-three-quarters.jpg",
+                    Price = 1400.00M,
+                    TransmissionId=2,
+                    TypeId = 1,
+                    DealerId = 1
+                },
+                new Car()
+                {
+                    Id = 6,
+                    Brand = "SKODA",
+                    Model = "SUPERB",
+                    Year = 2018,
+                    FuelId = 2,
+                    Description = "Engine 2.0L TDI with a power of 190 hp. with. , aluminum rims.Chassis number: TMB1JCNP2H7544236, with registration. Equipment:Leather interior, Navigation system, Front and rear parking sensors, Heated mirrors, LED brake lights",
+                    ImageUrl = "https://img.indianautosblog.com/resize/750x-/2017/10/2018-Skoda-Superb-facelift-rendering-front-three-quarters.jpg",
+                    Price = 1400.00M,
+                    TransmissionId=2,
+                    TypeId = 1,
+                    DealerId = 1
+                }
             };
 
             return cars;

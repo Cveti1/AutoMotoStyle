@@ -9,6 +9,7 @@ namespace AutoMotoStyle.Core.Contracts
 
         Task<ServiceFormModel> ServiceDetailsById(int id);
 
+
     }
 
 	

@@ -3,6 +3,7 @@ using AutoMotoStyle.Core.Contracts;
 using AutoMotoStyle.Core.Models.Car;
 using AutoMotoStyle.Core.Models.Service;
 using AutoMotoStyle.Core.Services;
+using AutoMotoStyle.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -19,8 +20,7 @@ namespace AutoMotoStyle.Controllers
             serviceModel = _serviceModel;
            
         }
-
-
+        
 
         public async Task<IActionResult> IndexService()
         {
@@ -39,25 +39,19 @@ namespace AutoMotoStyle.Controllers
 
 
         [AllowAnonymous]
-        public async Task<IActionResult> ServiceDetails(int id )
+        public async Task<IActionResult> ServiceDetails(int id, string information)
         {
-            //, string information
-            //  if ((await serviceModel.Exists(id)) == false)
-             // {
-              //   return RedirectToAction(nameof(Mine));
-             // }
 
             var serv = await serviceModel.ServiceDetailsById(id);
-
-           // if (information != model.GetInformation())
-          //  {
-            //    TempData["ErrorMessage"] = "Error!";
-
-          //      return RedirectToAction("Index", "Home");
-         //   }
-
             return View(serv);
 
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Back(int id)
+        {
+            return RedirectToAction(nameof(IndexService));
         }
     }
 }
