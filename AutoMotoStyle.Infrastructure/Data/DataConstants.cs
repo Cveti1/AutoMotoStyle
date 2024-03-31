@@ -30,8 +30,8 @@ namespace AutoMotoStyle.Infrastructure.Data
 
         // Service
         public const int MaxServiceName = 50;
-        public const int MinServiceName = 4;
 
+        public const int MaxServiceDescription = 500;
         public const int MaxServiceImageUrl = 1000;
 
 

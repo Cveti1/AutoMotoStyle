@@ -15,7 +15,11 @@ namespace AutoMotoStyle.Infrastructure.Data.Models
 		[StringLength(MaxServiceName)]
 		public string Name { get; set; } = null!;
 
-		[Required]
+        [Required]
+        [StringLength(MaxServiceDescription)]
+        public string Description { get; set; } = null!;
+
+        [Required]
 		[StringLength(MaxServiceImageUrl)]
 		public string ImageUrl { get; set; } = null!;
 
