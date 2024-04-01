@@ -14,17 +14,20 @@
                  src="@Model.ImageUrl" alt="Car Image">
         </div>
         <div class="card col-8 border-0">
-            <p style="font-size:15px;"><u>@Model.Brand</u></p>
-            <p style="font-size:15px;"><u>@Model.Model</u></p>            
-            <p style="font-size:15px;"><u>@Model.Year</u></p>            
-            <p>
-                Price:
-                <b>@String.Format("{0:f2}", Model.Price) BGN</b>
+	        <p style="font-size:20px;">
+		        <b>@Model.Brand</b><br/>
+		        <b>@Model.Model</b>
+	        </p>   
+            <br/>
+            <p style="font-size:18px;">
+	            <b><i>Year:</i></b> @Model.Year<br/>
+                <b><i>Price:</i></b>
+                @String.Format("{0:f2}", Model.Price) EUR<br/>
+	            <b><i>More info:</i></b> @Model.Description<br/>
+	            <b><i>Type:</i></b> @Model.Type<br/>
+	            <b><i>Fuel:</i></b> @Model.Fuel<br/>
+	            <b><i>Transmission:</i></b> @Model.Transmission<br/>
             </p>
-            <p>More info: <b>@Model.Description</b></p>
-            <p>Type: <b>@Model.Type</b></p>
-            <p>Fuel: <b>@Model.Fuel</b></p>
-            <p>Transmission: <b>@Model.Transmission</b></p>
             <p><i>(@(Model.IsRented ? "Rented" : "Not Rented"))</i></p>
             <div class="form-inline">
                 @if (this.User.Identity.IsAuthenticated)
@@ -52,9 +55,9 @@
             <p></p>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Dealer Info</h5>
-                    <p class="card-text">Name:  @Model.Dealer.Name</p>
-                    <p class="card-text">Phone Number: @Model.Dealer.PhoneNumber</p>
+                    <h5 class="card-title"><b>Dealer Info</b></h5>
+                    <p class="card-text"><b><i>Name:</i></b>  @Model.Dealer.Name</p>
+                    <p class="card-text"><b><i>Phone Number:</i></b> @Model.Dealer.PhoneNumber</p>
                 </div>
             </div>
         </div>
