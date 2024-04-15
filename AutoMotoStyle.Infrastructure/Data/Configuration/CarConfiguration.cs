@@ -99,6 +99,48 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                     TransmissionId=2,
                     TypeId = 2,
                     DealerId = 1
+                },
+                new Car()
+                {
+                    Id = 7,
+                    Brand = "KAWASAKI",
+                    Model = "Z1000",
+                    Year = 2021,
+                    FuelId = 3,
+                    Description = "Futuristic appearance, excellent optics, digital instrument panel, adjustable suspension, sliding clutch - all this works as a single organism, at the heart of which is a 1043-cc engine with an impeccable reputation. 142 horsepower and a maximum speed of 249 km/h.",
+                    ImageUrl = "https://synergosmoto.com/uploaded/KWkFm67eFd.jpg",
+                    Price = 1700.00M,
+                    TransmissionId=3,
+                    TypeId = 4,
+                    DealerId = 1
+                },
+                new Car()
+                {
+                    Id = 8,
+                    Brand = "HYUNDAI",
+                    Model = "TUCSON",
+                    Year = 2023,
+                    FuelId = 3,
+                    Description = "The 2023 Tucson Plug-in Hybrid is a powerful, efficient, and practical crossover. The 261-hp Plug-in's extra power—74 horsepower suits its personality well. It behaves well in the curves, and the electric torque provides plenty of oomph off the line.",
+                    ImageUrl = "https://www.motortrend.com/uploads/2022/08/2023-Hyundai-Tucson-PHEV-Front-Three-Quarter.jpg",
+                    Price = 2700.00M,
+                    TransmissionId=1,
+                    TypeId = 3,
+                    DealerId = 1
+                },
+                new Car()
+                {
+                    Id = 9,
+                    Brand = "VOLKSWAGEN",
+                    Model = "TRANSPORTER",
+                    Year = 2010,
+                    FuelId = 1,
+                    Description = "Gasoline engine of the TSI series with a volume of 2.0 liters, power of 150 and 204 hp. It combines two technologies: direct injection and turbocharging. Fuel consumption is about 15 liters per 100 km. Length - 4904 mm, height - 1990 mm. The total number of seats when transporting people is 5 or 6 passengers.",
+                    ImageUrl = "https://parkers-images.bauersecure.com/wp-images/19429/12-vw-transporter-2003.jpg",
+                    Price = 1600.00M,
+                    TransmissionId=1,
+                    TypeId = 2,
+                    DealerId = 1
                 }
             };
 
