@@ -32,6 +32,12 @@ namespace AutoMotoStyle.Controllers
             
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Back(int id)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int statusCode)
         {

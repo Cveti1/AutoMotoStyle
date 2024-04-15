@@ -56,7 +56,7 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                       Price = 1400.00M,
                       TransmissionId=2,
                       TypeId = 1,
-                      DealerId = 1                      
+                      DealerId = 2                      
                  },
                 new Car()
                 {
@@ -84,7 +84,8 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                     Price = 1900.00M,
                     TransmissionId=3,
                     TypeId = 4,
-                    DealerId = 1
+                    DealerId = 2,
+                    RenterId = "guest-a5-7a9a-4ba7-8768-66ba10cd0979"
                 },
                 new Car()
                 {
@@ -140,7 +141,8 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                     Price = 1600.00M,
                     TransmissionId=1,
                     TypeId = 2,
-                    DealerId = 1
+                    DealerId = 2,
+                    RenterId = "guest-a5-7a9a-4ba7-8768-66ba10cd0979"
                 }
             };
 

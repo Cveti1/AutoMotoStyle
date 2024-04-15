@@ -14,7 +14,10 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
 
         private List<IdentityUser> CreateUsers()
         {
+
+            //Seed Dealer
             var users = new List<IdentityUser>();
+
             var hasher = new PasswordHasher<IdentityUser>();
 
             var user = new IdentityUser()
@@ -30,7 +33,27 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                  hasher.HashPassword(user, "dealer123");
 
             users.Add(user);
+            
 
+            //Seed Dealer2
+
+            user = new IdentityUser()
+            {
+                Id = "dealer-2-1234-47c0-a9ba-38b9a5ddb123",
+                UserName = "dealer_2@mail.com",
+                NormalizedUserName = "dealer_2@mail.com",
+                Email = "dealer_2@mail.com",
+                NormalizedEmail = "dealer_2@mail.com"
+            };
+
+            user.PasswordHash =
+                hasher.HashPassword(user, "dealer456");
+
+            users.Add(user);
+
+            //Seed Guest
+
+            
             user = new IdentityUser()
             {
                 Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",

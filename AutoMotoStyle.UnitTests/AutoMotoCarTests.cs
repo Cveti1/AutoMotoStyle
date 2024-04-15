@@ -92,8 +92,9 @@ namespace AutoMotoStyle.UnitTests
             await repo.SaveChangesAsync();
             var carCollection = await carService.HomePageCars();
 
-            Assert.That(4, Is.EqualTo(carCollection.Count()));
-            Assert.That(carCollection.Any(h => h.Id == 3), Is.False);
+            Assert.That(13, Is.EqualTo(carCollection.Count()));
+            Assert.That(carCollection.Any(h => h.Id == 3), Is.True);
+            Assert.That(carCollection.Any(h => h.Id == 11), Is.False);
            
         }
 
@@ -259,8 +260,9 @@ namespace AutoMotoStyle.UnitTests
             var exist_first = await carService.Exists(2);
             Assert.That(exist_first, Is.True );
 
-            var exist_second = await carService.Exists(4);
+            var exist_second = await carService.Exists(10);
             Assert.That(exist_second, Is.False);
+            
         }
 
         [Test]
@@ -376,7 +378,7 @@ namespace AutoMotoStyle.UnitTests
             carService = new CarService(repo, logger);
 
             var existCars = await carService.AllCarsByDealerId(1);
-            Assert.That(existCars.Count(), Is.EqualTo(3));
+            Assert.That(existCars.Count(), Is.EqualTo(6));
 
         }
 

@@ -54,12 +54,18 @@
             </div>
             <p></p>
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><b>Dealer Info</b></h5>
-                    <p class="card-text"><b><i>Name:</i></b>  @Model.Dealer.Name</p>
-                    <p class="card-text"><b><i>Phone Number:</i></b> @Model.Dealer.PhoneNumber</p>
-                </div>
+	            <div class="card-body">
+		            <h5 class="card-title"><b>Dealer Info</b></h5>
+		            <p class="card-text"><b><i>Name:</i></b>  @Model.Dealer.Name</p>
+		            <p class="card-text"><b><i>Phone Number:</i></b> @Model.Dealer.PhoneNumber</p>
+	            </div>
             </div>
+            <p></p>
+
+            <form class="ml-2" asp-controller="Home" asp-action="Back"
+                  asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-primary" type="submit" value="<< Previous" />
+            </form>
         </div>
     </div>
 </div>

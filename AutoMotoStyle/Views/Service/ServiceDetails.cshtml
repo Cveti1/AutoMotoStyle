@@ -18,13 +18,10 @@
             <p style="font-size:25px;"><b><i> @Model.Name</i></b></p>
 
             <p style="font-size:15px;"><b><i>MORE INFORMATION: </i></b> @Model.Description</p>
-
-
             <p></p>
-            
             <form class="ml-2" asp-controller="Service" asp-action="Back"
                   asp-route-id="@Model.Id" method="post">
-	            <input class="btn btn-primary" type="submit" value="Back" />
+	            <input class="btn btn-primary" type="submit" value="<< Back" />
             </form>
 
 	    </div>
