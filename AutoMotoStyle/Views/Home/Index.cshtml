@@ -16,14 +16,25 @@
             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
             {
                 <a asp-controller="Car" asp-action="Add" class="btn btn-primary btn-lg"
-                   role="button">Add Car</a>
+                role="button">Add Car</a>
             }
         </p>
     </div>
 }
 
-<div class="mb-5"></div>
 
+<h1 class="display-4">Welcome to "AutoMotoStyle"!</h1>
+    <p class="lead mb-1 mt-3">
+    <i><b>
+        This is your place to rent a vehicle...! <br />
+        You can browse our gallery and choose the one that best suits your needs...
+        </b>
+    </i>
+    </p>
+    
+
+
+<div class="mb-5"></div>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         @foreach (var car in Model)
