@@ -7,13 +7,13 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<div class="container" style="display:inline">
+<div class="container" style="display:inline" >
     <div class="row">
         <div class="col-4">
             <img class="card-img-top" style="width: 25rem;"
                  src="@Model.ImageUrl" alt="Car Image">
         </div>
-        <div class="card col-8 border-0">
+        <div style="background-color:lightgoldenrodyellow" class="card col-8 border-0">
 	        <p style="font-size:20px;">
 		        <b>@Model.Brand</b><br/>
 		        <b>@Model.Model</b>
@@ -54,7 +54,7 @@
             </div>
             <p></p>
             <div class="card" style="width: 18rem;">
-	            <div class="card-body">
+                <div style="background-color:lightgoldenrodyellow" class=" card-body">
 		            <h5 class="card-title"><b>Dealer Info</b></h5>
 		            <p class="card-text"><b><i>Name:</i></b>  @Model.Dealer.Name</p>
 		            <p class="card-text"><b><i>Phone Number:</i></b> @Model.Dealer.PhoneNumber</p>
