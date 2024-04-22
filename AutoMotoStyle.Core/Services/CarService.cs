@@ -146,8 +146,6 @@ namespace AutoMotoStyle.Core.Services
             };
 
 
-
-
             try
             {
                 await repo.AddAsync(car);

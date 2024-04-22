@@ -53,7 +53,7 @@ namespace AutoMotoStyle.Controllers
             {
                 return View("Error404");
             }
-            // return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+           //  return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             return View();
         }
     }

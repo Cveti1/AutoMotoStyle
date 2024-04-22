@@ -25,10 +25,10 @@ namespace AutoMotoStyle.Controllers
         public async Task<IActionResult> IndexService()
         {
 
-            // if (User.IsInRole(AdminRolleName))
-            //  {
-            //      return RedirectToAction("Index", "Admin", new { area = "Admin" });
-            //  }
+             //if (User.IsInRole("Administrator"))
+             // {
+             //     return RedirectToAction("Index", "Admin", new { area = "Admin" });
+             // }
 
             var model = await serviceModel.AllServices();
 
