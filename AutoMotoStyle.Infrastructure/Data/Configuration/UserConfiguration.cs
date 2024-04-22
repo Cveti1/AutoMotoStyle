@@ -15,11 +15,12 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
         private List<IdentityUser> CreateUsers()
         {
 
-            //Seed Dealer
+            
             var users = new List<IdentityUser>();
-
             var hasher = new PasswordHasher<IdentityUser>();
 
+
+            //Create Dealer
             var user = new IdentityUser()
             {
                 Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
@@ -35,8 +36,8 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
             users.Add(user);
             
 
-            //Seed Dealer2
 
+            //Create Dealer2
             user = new IdentityUser()
             {
                 Id = "dealer-2-1234-47c0-a9ba-38b9a5ddb123",
@@ -51,9 +52,9 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
 
             users.Add(user);
 
-            //Seed Guest
 
-            
+
+            //Create Guest            
             user = new IdentityUser()
             {
                 Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
@@ -67,6 +68,26 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
             hasher.HashPassword(user, "guest123");
 
             users.Add(user);
+
+
+
+            //Create Administrator
+            user = new IdentityUser()
+            {
+                Id = "admin-a5-7a9a-4ba7-8768-66ba10cd0123",
+                UserName = "admin@automotostyle.com",
+                NormalizedUserName = "admin@automotostyle.com",
+                Email = "admin@automotostyle.com",
+                NormalizedEmail = "admin@automotostyle.com"
+            };
+
+            user.PasswordHash =
+            hasher.HashPassword(user, "admin123");
+
+            users.Add(user);
+
+
+
 
             return users;
         }
