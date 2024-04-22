@@ -20,8 +20,8 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
             var hasher = new PasswordHasher<IdentityUser>();
 
 
-            //Create Dealer
-            var user = new IdentityUser()
+            //Create Dealer1 as user
+            var dealer1 = new IdentityUser()
             {
                 Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                 UserName = "dealer@mail.com",
@@ -30,15 +30,15 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 NormalizedEmail = "dealer@mail.com"
             };
 
-            user.PasswordHash =
-                 hasher.HashPassword(user, "dealer123");
+            dealer1.PasswordHash =
+                 hasher.HashPassword(dealer1, "dealer123");
 
-            users.Add(user);
+            users.Add(dealer1);
             
 
 
-            //Create Dealer2
-            user = new IdentityUser()
+            //Create Dealer2 as user
+           var dealer2 = new IdentityUser()
             {
                 Id = "dealer-2-1234-47c0-a9ba-38b9a5ddb123",
                 UserName = "dealer_2@mail.com",
@@ -47,15 +47,15 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 NormalizedEmail = "dealer_2@mail.com"
             };
 
-            user.PasswordHash =
-                hasher.HashPassword(user, "dealer456");
+            dealer2.PasswordHash =
+                hasher.HashPassword(dealer2, "dealer456");
 
-            users.Add(user);
+            users.Add(dealer2);
 
 
 
-            //Create Guest            
-            user = new IdentityUser()
+            //Create Guest as user     
+            var dealer3 = new IdentityUser()
             {
                 Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                 UserName = "guest@mail.com",
@@ -64,15 +64,15 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 NormalizedEmail = "guest@mail.com"
             };
 
-            user.PasswordHash =
-            hasher.HashPassword(user, "guest123");
+            dealer3.PasswordHash =
+            hasher.HashPassword(dealer3, "guest123");
 
-            users.Add(user);
+            users.Add(dealer3);
 
 
 
-            //Create Administrator
-            user = new IdentityUser()
+            //Create Administrator as user
+            var admin = new IdentityUser()
             {
                 Id = "admin-a5-7a9a-4ba7-8768-66ba10cd0123",
                 UserName = "admin@automotostyle.com",
@@ -81,10 +81,10 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                 NormalizedEmail = "admin@automotostyle.com"
             };
 
-            user.PasswordHash =
-            hasher.HashPassword(user, "admin123");
+            admin.PasswordHash =
+            hasher.HashPassword(admin, "admin123");
 
-            users.Add(user);
+            users.Add(admin);
 
 
 

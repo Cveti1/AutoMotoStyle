@@ -58,6 +58,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.SeedAdmin();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

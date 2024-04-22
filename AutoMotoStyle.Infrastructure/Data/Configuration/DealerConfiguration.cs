@@ -29,7 +29,16 @@ namespace AutoMotoStyle.Infrastructure.Data.Configuration
                     DealerName = "dealer2",
                     PhoneNumber = "+359987654321",
                     UserId = "dealer-2-1234-47c0-a9ba-38b9a5ddb123"
-                }
+                },
+
+                new Dealer()
+                {
+                    Id = 3,
+                    DealerName = "admin",
+                    PhoneNumber = "+359001100000",
+                    UserId = "admin-a5-7a9a-4ba7-8768-66ba10cd0123"
+                },
+
             };
 
             return dealers;

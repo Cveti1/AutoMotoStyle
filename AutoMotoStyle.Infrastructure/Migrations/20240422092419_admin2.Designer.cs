@@ -4,6 +4,7 @@ using AutoMotoStyle.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoMotoStyle.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240422092419_admin2")]
+    partial class admin2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -573,15 +575,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "dealer-7-4421-47c0-a9ba-38b9a5ddb357",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0859fa44-ce19-4f03-b2c7-e02385a9efa8",
+                            ConcurrencyStamp = "28b41851-cc1b-4630-a6d0-3392147d8446",
                             Email = "dealer@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "dealer@mail.com",
                             NormalizedUserName = "dealer@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJWR8XdRFa3U+hNw9bpT5BbpffJb+9rzfMAiQ0WAg50yA1ShZoS6LXe+iCSP2jRizg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFGhPaIIAZnIvBwG2jWPyZAC+6Cy0wFYhyZnTXuBKJMhJ1cKrMGj4mSPDYOzwexfQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "49641629-d96a-4954-b164-f4382177f568",
+                            SecurityStamp = "fe5260cd-ac3a-4aa2-9c7b-2da816333fc6",
                             TwoFactorEnabled = false,
                             UserName = "dealer@mail.com"
                         },
@@ -589,15 +591,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "dealer-2-1234-47c0-a9ba-38b9a5ddb123",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8451011-f5be-4c4d-8aaf-c30a359576e9",
+                            ConcurrencyStamp = "158c66ca-7c1e-4602-ab3a-1d82520519d9",
                             Email = "dealer_2@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "dealer_2@mail.com",
                             NormalizedUserName = "dealer_2@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAELnGelRMqEJROT0QVJNP4hAuD79W6sVtg9Jlu6ideG/VdKzztIFKZc+HuqdCkS36+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHFCu9FOVKVX+C0KUelvwEwkhYquv/W1lWbNUKk7XAPz2/YH1grBtg/LHXIWYrcF4w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "54b3c3cb-5ebd-4696-9199-4bb9a0d1cf91",
+                            SecurityStamp = "3b9d5034-134e-4f82-a7c7-30aaf4f15eac",
                             TwoFactorEnabled = false,
                             UserName = "dealer_2@mail.com"
                         },
@@ -605,15 +607,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "guest-a5-7a9a-4ba7-8768-66ba10cd0979",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b060454-7ce8-49a0-ae11-4718f4337da5",
+                            ConcurrencyStamp = "23c18fa6-e811-4a3b-bdd5-1baf05991167",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDn15a0E1P/Znl/SQn6MDZuDmXlflZwMBWXOjAkF1VIEymMw7IfqjVm0ss3hdoesTA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG0c9S/zljSkvtjN/ks+m+8WKLbn1qNeyPu9W1KcmB9AHOC1w02J0WAqqdxe3yxO2g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "44450fa8-35c6-4be7-a6a2-9c96446b4435",
+                            SecurityStamp = "0ec1ec87-014c-4c74-8a9c-e746e5973e79",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
@@ -621,15 +623,15 @@ namespace AutoMotoStyle.Infrastructure.Migrations
                         {
                             Id = "admin-a5-7a9a-4ba7-8768-66ba10cd0123",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1d4fc98-66c3-483d-b651-5a67ea3081b8",
+                            ConcurrencyStamp = "fa024d47-3524-460c-bc01-92989e7a43a7",
                             Email = "admin@automotostyle.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@automotostyle.com",
                             NormalizedUserName = "admin@automotostyle.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ/edLw8g72VerK08dQ6T9m/UhgkqoaQX2UQeQOwZD0PcuPY2X736T7KU8FYHvgWCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDsCWaL+ciML6t+cUMO8laNgqxaDZNELDQmRlFTq4Pj2V/dnJK8+O1fieThrrAkPzw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6ea4f423-0fa7-4e5a-98ef-52a0132b4ea5",
+                            SecurityStamp = "9782f9d6-72ad-4d3a-80c5-be7f62b9f7d4",
                             TwoFactorEnabled = false,
                             UserName = "admin@automotostyle.com"
                         });

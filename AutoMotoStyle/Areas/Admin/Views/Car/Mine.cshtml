@@ -2,7 +2,7 @@
  @model MyCarsViewModel
 
 @{
-    ViewBag.Title = "My Cars";
+    ViewBag.Title = "Administrator added and rented cars";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -12,13 +12,13 @@
 
 @if (!Model.AddedCars.Any())
 {
-    <h2 class="text-center"><label>❌</label> <BR></BR>No added cars yet!</h2>
+    <h2  class="text-center"><label>❌</label> <BR>No added cars yet!</h2>
 }
 
 <div class="row">
     @foreach (var car in Model.AddedCars)
     {
-        @await Html.PartialAsync("~/Views/Shared/_CarPartial.cshtml", car)
+        @await Html.PartialAsync("~/Views/Shared/_CarPartialAdmin.cshtml", car)
     }
 </div>
 
@@ -26,12 +26,12 @@
 
 @if (!Model.RentedCars.Any())
 {
-	<h2 class="text-center"><label>❌</label> <BR></BR>No rented cars yet!</h2>
+	<h2 class="text-center"><label>❌</label> <BR>No rented cars yet!</h2>
 }
 
 <div class="row">
     @foreach (var car in Model.RentedCars)
     {
-        @await Html.PartialAsync("~/Views/Shared/_CarPartial.cshtml", car)
+        @await Html.PartialAsync("~/Views/Shared/_CarPartialAdmin.cshtml", car)
     }
 </div>
