@@ -155,13 +155,14 @@ namespace AutoMotoStyle.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            if ((await carService.HasDealerWithId(id, User.Id())) == false)
-            {
-              //  logger.LogInformation("User with id {0} attempted to open other agent house", User.Id());
+           if ((await carService.HasDealerWithId(id, User.Id())) == false && User.IsAdmin()==false)
+           {
+              // logger.LogInformation("User with id {0} attempted to open other agent house", User.Id());
 
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
-            }
+           }
 
+           
             var car = await carService.CarDetailsById(id);
             var typeId = await carService.GetCarTypeId(id);
             var fuelId = await carService.GetCarFuelId(id);
@@ -197,7 +198,7 @@ namespace AutoMotoStyle.Controllers
           //      return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
          //   }
 
-            if ((await carService.Exists(mod.Id)) == false)
+            if ((await carService.Exists(mod.Id)) == false && User.IsAdmin() == false)
             {
                 ModelState.AddModelError("", "Car does not exist!");
                 mod.CarTypes = await carService.AllTypes();
@@ -207,7 +208,7 @@ namespace AutoMotoStyle.Controllers
                 return View(mod);
             }
 
-            if ((await carService.HasDealerWithId(mod.Id, User.Id())) == false)
+            if ((await carService.HasDealerWithId(mod.Id, User.Id())) == false && User.IsAdmin() == false)
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -237,7 +238,7 @@ namespace AutoMotoStyle.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            if ((await carService.HasDealerWithId(id, User.Id())) == false)
+            if ((await carService.HasDealerWithId(id, User.Id())) == false && User.IsAdmin() == false)
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -262,7 +263,7 @@ namespace AutoMotoStyle.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            if ((await carService.HasDealerWithId(id, User.Id())) == false)
+            if ((await carService.HasDealerWithId(id, User.Id())) == false && User.IsAdmin() == false)
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -280,7 +281,7 @@ namespace AutoMotoStyle.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            if ( await dealerService.ExistsById(User.Id()))
+            if ( await dealerService.ExistsById(User.Id()) == false)
             {
                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -308,7 +309,7 @@ namespace AutoMotoStyle.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            if ((await carService.IsRentedByUserWithId(id, User.Id())) == false)
+            if ((await carService.IsRentedByUserWithId(id, User.Id())) == false && User.IsAdmin() == false)
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
