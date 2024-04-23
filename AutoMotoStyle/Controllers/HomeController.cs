@@ -32,6 +32,14 @@ namespace AutoMotoStyle.Controllers
             
         }
 
+        public async Task<IActionResult> Contact()
+        {
+           return View();
+        }
+
+
+      
+
         [HttpPost]
         public async Task<IActionResult> Back(int id)
         {
