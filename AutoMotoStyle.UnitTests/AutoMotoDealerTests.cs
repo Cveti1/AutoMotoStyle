@@ -65,7 +65,7 @@ namespace AutoMotoStyle.UnitTests
                 "newDealer", "0123456789");
 
             var countDealer =  repo.AllReadonly<Dealer>().Count();
-            Assert.That(countDealer, Is.EqualTo(3));
+            Assert.That(countDealer, Is.EqualTo(4));
            
         }
 
