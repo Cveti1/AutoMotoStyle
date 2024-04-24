@@ -46,6 +46,8 @@ namespace AutoMotoStyle.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int statusCode)
         {
@@ -61,7 +63,7 @@ namespace AutoMotoStyle.Controllers
             {
                 return View("Error404");
             }
-           //  return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+           
             return View();
         }
     }

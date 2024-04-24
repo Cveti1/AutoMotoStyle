@@ -45,7 +45,7 @@ namespace AutoMotoStyle.Core.Models.Car
 
         [Required]
         [Display(Name = "Price")]
-       // [Range(0.00, 100000.00, ErrorMessage = "The price must be a positive number and less than {2} euro")]
+       
         public decimal Price { get; set; }
 
         public IEnumerable<CarTypeModel> CarTypes { get; set; } = new List<CarTypeModel>();

@@ -12,8 +12,10 @@ namespace AutoMotoStyle.Infrastructure.Data
         //Type
         public const int MaxType = 35;
 
+
         //Fuel
         public const int MaxFuel = 15;
+
 
         // Car
         public const int MaxBrand = 50;

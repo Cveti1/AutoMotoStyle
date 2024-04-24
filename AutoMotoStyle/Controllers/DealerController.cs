@@ -36,6 +36,7 @@ namespace AutoMotoStyle.Controllers
         }
 
 
+
         [HttpPost]
         public async Task<IActionResult> Become(BecomeDealer model)
         {

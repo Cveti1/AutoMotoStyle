@@ -117,6 +117,7 @@ namespace AutoMotoStyle.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Add(CarModel car)
         {
@@ -229,6 +230,7 @@ namespace AutoMotoStyle.Controllers
             });
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -273,6 +275,8 @@ namespace AutoMotoStyle.Controllers
             return RedirectToAction(nameof(All));
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> Rent(int id)
         {
@@ -297,6 +301,8 @@ namespace AutoMotoStyle.Controllers
 
 
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Leave(int id)
